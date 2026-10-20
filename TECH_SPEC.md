@@ -295,6 +295,12 @@ python -m http.server 3000
 ---
 
 ## 8. Changelog
+### 2026-10-20 — Cloudflare Static Assets Deployment Configuration
+- Modified: Cloudflare Deployment Configuration (`wrangler.jsonc`, `next.config.mjs`, `package.json`)
+- Before: Unconfigured Cloudflare environment triggered `@opennextjs/cloudflare migrate` during `wrangler deploy`, creating a broken `WORKER_SELF_REFERENCE` binding to `asa-epc-quotation` (Error code: 10143).
+- After: Configured `output: 'export'` in `next.config.mjs`, aligned package name to `asa-epc-pvt--ltd`, and created `wrangler.jsonc` specifying assets directory `./out`. Tested with dry-run verification.
+- Reason: Eliminates unnecessary SSR OpenNext shims for a pure static presentation website, enabling instantaneous global CDN edge delivery without service binding errors.
+
 ### 2026-10-20 — Implementation in Next.js 15 App Router
 - Modified: Application Architecture and Component Structure
 - Before: Proposed Vanilla static web application with flat files.
