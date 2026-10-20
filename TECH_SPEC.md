@@ -295,6 +295,12 @@ python -m http.server 3000
 ---
 
 ## 8. Changelog
+### 2026-10-20 — Cloudflare Workers CI Build Succeeded
+- Modified: Lockfile & Cloudflare Deployment Configuration
+- Before: GitHub commit check failed with `npm ci` lockfile mismatch error.
+- After: Synchronized `package-lock.json` with `package.json` (`commit e32e4cc`), resulting in `conclusion: "success"` on Cloudflare Workers Builds CI (`Version ID: d5688564-83ba-4210-a666-109c8ec2dff5`).
+- Reason: Resolved dependency discrepancy so Cloudflare's `npm clean-install` runs cleanly.
+
 ### 2026-10-20 — Cloudflare Static Assets Deployment Configuration
 - Modified: Cloudflare Deployment Configuration (`wrangler.jsonc`, `next.config.mjs`, `package.json`)
 - Before: Unconfigured Cloudflare environment triggered `@opennextjs/cloudflare migrate` during `wrangler deploy`, creating a broken `WORKER_SELF_REFERENCE` binding to `asa-epc-quotation` (Error code: 10143).
