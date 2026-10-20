@@ -1,0 +1,19 @@
+:root {
+  --forest: #0B2818;
+  --forest-light: #153922;
+  --forest-dark: #06160D;
+  --paper: #FAF8F3;
+  --amber: #E8A33D;
+  --amber-deep: #C97F1E;
+  --slate: #1C2620;
+  --sage: #E8EDE4;
+  --sage-line: #CFDBC8;
+  --green-line: #2D5A3D;
+  --muted: #6B7568;
+  --white: #FFFFFF;
+  --radius: 14px;
+  --maxw: 980px;
+
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
