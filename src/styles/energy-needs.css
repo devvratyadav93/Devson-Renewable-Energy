@@ -1,0 +1,305 @@
+/* ==========================================================================
+   ENERGY NEEDS APPLIANCE LOAD ESTIMATOR MATRIX (LIGHT THEME)
+   Recreated without dark backgrounds for maximum contrast and legibility
+   ========================================================================== */
+
+.energy-needs-section {
+  padding: 85px 0 75px;
+  background: #F8FAF8;
+  position: relative;
+  border-top: 1px solid var(--sage-line);
+  border-bottom: 1px solid var(--sage-line);
+}
+
+.energy-needs-section .section-head {
+  text-align: center;
+  margin: 0 auto 28px;
+  max-width: 860px;
+}
+
+.energy-needs-section .section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E8F5E9;
+  color: #1E6B37;
+  border: 1px solid #C8E6C9;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.energy-needs-section .section-title {
+  color: #0B2818 !important;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.energy-needs-section .section-sub {
+  color: #4A5568 !important;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Tabs: Residential vs Commercial */
+.energy-tabs-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 32px 0 28px;
+}
+
+.energy-tab-btn {
+  background: var(--white);
+  border: 1.5px solid #CBD5E0;
+  color: #334155;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.energy-tab-btn:hover {
+  border-color: var(--amber);
+  color: var(--forest);
+  transform: translateY(-1px);
+}
+
+.energy-tab-btn.active {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--forest);
+  font-weight: 800;
+  box-shadow: 0 4px 18px rgba(232, 163, 61, 0.35);
+}
+
+/* Matrix Card (Clean White) */
+.energy-matrix-card {
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(11, 40, 24, 0.06);
+}
+
+.energy-matrix-card .table-responsive {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.energy-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+.energy-table thead th {
+  background: #F1F5F2;
+  color: #0B2818;
+  font-family: var(--font-display);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 18px 24px;
+  border-bottom: 2px solid #CBD5E0;
+}
+
+.energy-table tbody td {
+  padding: 15px 24px;
+  border-bottom: 1px solid #EDF2F7;
+  font-size: 0.95rem;
+  vertical-align: middle;
+  color: #1A202C !important;
+  background: #FFFFFF;
+}
+
+.energy-table tbody tr:nth-child(even) td {
+  background: #FAFAF8;
+}
+
+.energy-table tbody tr:hover td {
+  background: #F0FDF4;
+}
+
+.appliance-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #0B2818 !important;
+  font-weight: 700;
+}
+
+.appliance-name-cell strong {
+  color: #0B2818 !important;
+  font-size: 0.98rem;
+  font-weight: 700;
+}
+
+.appliance-dot {
+  color: var(--amber);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+/* Stepper Pill */
+.qty-control-pill {
+  display: inline-flex;
+  align-items: center;
+  background: #F1F5F2;
+  border: 1.5px solid #CBD5E0;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 3px 6px;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: #0B2818 !important;
+  font-size: 16px;
+  font-weight: 800;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 50%;
+}
+
+.qty-btn:hover {
+  background: var(--amber);
+  color: var(--forest) !important;
+}
+
+.qty-input {
+  width: 44px;
+  background: transparent;
+  border: none;
+  color: #0B2818 !important;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 800;
+  text-align: center;
+  appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Bottom Calculation Summary Banner */
+.energy-summary-banner {
+  background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
+  border-top: 2px solid #10B981;
+  padding: 24px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+@media (max-width: 860px) {
+  .energy-summary-banner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.energy-summary-metrics {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+@media (max-width: 600px) {
+  .energy-summary-metrics {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .metric-divider {
+    display: none;
+  }
+}
+
+.metric-divider {
+  width: 1px;
+  height: 50px;
+  background: #CBD5E0;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-label {
+  font-size: 0.78rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.metric-val {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #064E3B;
+  line-height: 1;
+}
+
+.metric-val.green {
+  color: #059669;
+}
+
+.metric-sub {
+  font-size: 0.74rem;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.btn-energy-cta {
+  background: var(--amber);
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(232, 163, 61, 0.4);
+  white-space: nowrap;
+}
+
+.btn-energy-cta:hover {
+  background: var(--amber-deep);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(232, 163, 61, 0.55);
+}

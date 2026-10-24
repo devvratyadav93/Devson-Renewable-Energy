@@ -1,0 +1,84 @@
+/* ==========================================================================
+   4-COLUMN CORPORATE FOOTER STYLES
+   ========================================================================== */
+
+.closing {
+  background: var(--slate);
+  color: var(--paper);
+  padding: 70px 28px 40px;
+}
+
+.closing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1.1fr 1.2fr 1.3fr;
+  gap: 36px;
+  font-size: 13.5px;
+  color: #c0ccc0;
+}
+
+@media (max-width: 1024px) {
+  .closing-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .closing-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.footer-nav-list li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #c0ccc0;
+  font-size: 0.88rem;
+  transition: all 0.2s ease;
+  line-height: 1.35;
+}
+
+.footer-nav-list li a:hover {
+  color: var(--amber);
+  transform: translateX(3px);
+}
+
+.closing-col-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  margin-bottom: 12px;
+}
+
+.closing a {
+  color: #c0ccc0;
+  text-decoration: none;
+}
+
+.closing a:hover {
+  color: var(--amber);
+}
+
+.closing-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12.5px;
+  color: #8fa590;
+}

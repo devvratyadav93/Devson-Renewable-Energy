@@ -1,0 +1,551 @@
+/* ==========================================================================
+   DETAILED GOVERNMENT SOLAR SCHEMES SECTION
+   Comprehensive guide with financial breakdowns, benefits & photo references
+   ========================================================================== */
+
+.detailed-schemes-section {
+  padding: 85px 0 70px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAF8 100%);
+  border-bottom: 1px solid var(--sage-line);
+  position: relative;
+}
+
+.detailed-schemes-header {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 36px;
+}
+
+.detailed-schemes-header .sec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #E8F5E9;
+  color: #1E6B37;
+  border: 1px solid #C8E6C9;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+
+.detailed-schemes-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.detailed-schemes-header p {
+  color: var(--slate);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Schemes Quick Selection Tabs */
+.schemes-nav-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 992px) {
+  .schemes-nav-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .schemes-nav-tabs {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scheme-nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1.5px solid var(--sage-line);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(11, 40, 24, 0.03);
+}
+
+.scheme-nav-tab:hover {
+  border-color: var(--amber);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(232, 163, 61, 0.15);
+}
+
+.scheme-nav-tab.active {
+  background: #FFFFFF;
+  border-color: var(--amber);
+  box-shadow: 0 8px 24px rgba(232, 163, 61, 0.2);
+  border-left: 4px solid var(--amber);
+}
+
+.snt-icon {
+  font-size: 26px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.snt-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.snt-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--amber-deep);
+}
+
+.snt-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+/* Master Detailed Scheme Card */
+.detailed-scheme-card {
+  background: var(--white);
+  border: 1.5px solid var(--sage-line);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(11, 40, 24, 0.06);
+  margin-bottom: 40px;
+}
+
+.dsc-hero-split {
+  display: grid;
+  grid-template-columns: 42% 58%;
+  border-bottom: 1.5px solid var(--sage-line);
+}
+
+@media (max-width: 900px) {
+  .dsc-hero-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dsc-photo-wrap {
+  position: relative;
+  min-height: 340px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+
+.dsc-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.detailed-scheme-card:hover .dsc-photo {
+  transform: scale(1.02);
+}
+
+.dsc-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 40, 24, 0.2) 0%, rgba(11, 40, 24, 0.75) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.dsc-photo-pill {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: var(--forest);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.05em;
+}
+
+.dsc-photo-footer {
+  color: #FFFFFF;
+}
+
+.dsc-photo-footer .photo-tagline {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--amber);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.dsc-photo-footer .photo-caption {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+}
+
+/* Content Column */
+.dsc-content-col {
+  padding: 36px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  .dsc-content-col {
+    padding: 24px 20px;
+  }
+}
+
+.dsc-head-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.dsc-target-pill {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.dsc-scheme-title {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1.2;
+}
+
+.dsc-scheme-sub {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--amber-deep);
+  margin-top: 4px;
+}
+
+.dsc-scheme-desc {
+  color: var(--slate);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin: 14px 0 20px;
+}
+
+/* Subsidy Highlight Banner inside card */
+.dsc-subsidy-box {
+  background: #F0FDF4;
+  border: 1.5px solid #10B981;
+  border-radius: 14px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 500px) {
+  .dsc-subsidy-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.dsb-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dsb-icon {
+  font-size: 28px;
+}
+
+.dsb-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #065F46;
+  font-weight: 700;
+}
+
+.dsb-note {
+  font-size: 0.78rem;
+  color: #047857;
+}
+
+.dsb-amount {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #065F46;
+  white-space: nowrap;
+}
+
+/* Benefits & Eligibility Dual Columns */
+.dsc-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  padding: 30px 36px 36px;
+  background: #FCFDFD;
+}
+
+@media (max-width: 768px) {
+  .dsc-specs-grid {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+  }
+}
+
+.dsc-column-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--sage-line);
+}
+
+.dsc-column-title .col-ico {
+  color: var(--amber);
+  font-size: 1.1rem;
+}
+
+.dsc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dsc-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--slate);
+  line-height: 1.45;
+}
+
+.dsc-check {
+  color: #16A34A;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.dsc-doc-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dsc-doc-pill {
+  background: var(--white);
+  border: 1px solid var(--sage-line);
+  color: var(--slate);
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Action Footer of Scheme Card */
+.dsc-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 36px;
+  background: #F1F5F2;
+  border-top: 1.5px solid var(--sage-line);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .dsc-footer-bar {
+    padding: 16px 20px;
+  }
+}
+
+.dsc-compliance-chips {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.dsc-chip {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--forest);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dsc-actions-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-dsc-primary {
+  background: var(--amber);
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 12px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(232, 163, 61, 0.35);
+}
+
+.btn-dsc-primary:hover {
+  background: var(--amber-deep);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(232, 163, 61, 0.45);
+}
+
+.btn-dsc-secondary {
+  background: var(--white);
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1.5px solid var(--sage-line);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-dsc-secondary:hover {
+  border-color: var(--forest);
+  background: #FAFAFA;
+}
+
+/* Quick Schemes Comparison Table */
+.schemes-comparison-box {
+  background: var(--white);
+  border: 1.5px solid var(--sage-line);
+  border-radius: 16px;
+  padding: 28px 32px;
+  box-shadow: 0 8px 24px rgba(11, 40, 24, 0.04);
+}
+
+@media (max-width: 600px) {
+  .schemes-comparison-box {
+    padding: 20px 16px;
+  }
+}
+
+.sc-box-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.sc-box-head h4 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.sc-box-head span {
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+.schemes-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.schemes-summary-table th {
+  background: #F1F5F2;
+  color: var(--forest);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--sage-line);
+  text-align: left;
+}
+
+.schemes-summary-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #EDF2F7;
+  font-size: 0.88rem;
+  color: var(--slate);
+  vertical-align: middle;
+}
+
+.schemes-summary-table tr:hover td {
+  background: #F8FAF8;
+}
+
+.s-name-cell {
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.s-subsidy-cell {
+  font-weight: 800;
+  color: #059669;
+}

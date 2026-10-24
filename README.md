@@ -1,8 +1,6 @@
-# ASA EPC Solar Proposal & Turnkey Quotation Platform
+# DEVSON Renewable Energy Proposal & Solar Pricing Platform
 
-A modern, high-performance web application and corporate A4 print proposal engine built for **ASA EPC Pvt. Ltd.** (Waaree Energies Franchise Partner).
-
-Prepared for **D K Builders (Bawadiya Kala, Bhopal, MP)** for a **12,500 KWp DC (10 MW AC) Grid-Connected Ground Mount Solar Power Project** under the PM-KUSUM / Open Access scheme.
+A modern, high-performance web application, residential/commercial solar subsidy calculator, and corporate A4 print proposal engine built for **DEVSON Renewable Energy Private Limited**.
 
 ---
 
@@ -10,9 +8,10 @@ Prepared for **D K Builders (Bawadiya Kala, Bhopal, MP)** for a **12,500 KWp DC 
 
 - **Dual-Purpose Presentation:**
   - **Interactive Screen Experience:** Sticky glassmorphic navigation, ambient background video, smooth scroll animations, 120-day Gantt timeline chart, itemized commercial Bill of Quantities (BOQ), and floating accept/print action bar.
+  - **Interactive 1 kW to 10 kW Rooftop Subsidy Matrix:** Live calculation of system generation, roof space, Central Subsidy, and Bihar State Subsidy with instant WhatsApp quote booking.
   - **A4 Corporate Print Engine:** Automatic 1:1 multi-page PDF generation via `@page { size: A4; margin: 0; }`, dedicated executive Cover Page, zero-height hero collapse, and anti-orphan pagination rules.
 - **Modern Tech Stack:** Next.js 15 (App Router), TypeScript, Vanilla CSS (Design Tokens & CSS Modules).
-- **Zero Monolithic Inlining:** Fully decoupled static assets (`public/assets/`), lightweight ~112 kB bundle size, sub-second load times.
+- **Zero Monolithic Inlining:** Fully decoupled static assets (`public/assets/`), lightweight bundle size, sub-second load times.
 
 ---
 
@@ -35,8 +34,8 @@ Prepared for **D K Builders (Bawadiya Kala, Bhopal, MP)** for a **12,500 KWp DC 
 ### Installation
 ```bash
 # Clone the repository
-git clone https://github.com/devvratyadav93/ASA-EPC-Pvt.-Ltd.git
-cd ASA-EPC-Pvt.-Ltd
+git clone https://github.com/devvratyadav93/Devson.git
+cd Devson
 
 # Install dependencies
 npm install
@@ -65,15 +64,19 @@ npm start
 ```
 ├── public/
 │   └── assets/                     # High-res logos, diagrams, and project photos
+│       └── logos/
+│           ├── devson-logo.png     # Official transparent Devson emblem
+│           └── favicon.png         # Devson circular brand icon
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx              # Root HTML & metadata layout
+│   │   ├── layout.tsx              # Root HTML & Devson metadata layout
 │   │   └── page.tsx                # Main single-page application & print observer
 │   ├── components/                 # Modular section components
-│   │   ├── CoverPage.tsx           # Dedicated A4 Cover Page (print mode)
-│   │   ├── Navigation.tsx          # Sticky navigation & mobile drawer
+│   │   ├── CoverPage.tsx           # Dedicated A4 Cover Page with Devson credentials
+│   │   ├── Navigation.tsx          # Sticky navigation, WhatsApp CTA & mobile drawer
 │   │   ├── Hero.tsx                # Video background & project stats
-│   │   ├── AboutSection.tsx        # Company credentials & Waaree partnership
+│   │   ├── AboutSection.tsx        # Devson company credentials & 4 core sectors
+│   │   ├── RooftopSubsidySection.tsx # Interactive 1–10 kW Solar Cost & Subsidy calculator
 │   │   ├── ClientsNetworkSection.tsx
 │   │   ├── ProjectSummarySection.tsx
 │   │   ├── TechSpecSection.tsx
@@ -85,7 +88,7 @@ npm start
 │   │   ├── ExecutionSection.tsx
 │   │   ├── ServicesSection.tsx
 │   │   ├── TrackRecordSection.tsx
-│   │   ├── Footer.tsx
+│   │   ├── Footer.tsx              # Devson Rajgir/Nawada offices, CIN, GSTIN, contacts
 │   │   ├── AcceptBar.tsx
 │   │   └── IosPrintModal.tsx
 │   └── styles/
@@ -98,5 +101,11 @@ npm start
 
 ---
 
-## 📄 License & Confidentiality
-Confidential commercial quotation prepared by **ASA EPC Pvt. Ltd.** Valid for 30 days from offer date.
+## 📄 Corporate Identity & Statutory Credentials
+- **Company Name:** DEVSON Renewable Energy Private Limited
+- **CIN:** `U35105BR2026PTC087766`
+- **GSTIN:** `10AANCD0450H1Z5`
+- **Corporate Office:** Bihar Sharif Road, Panditpur More, Rajgir, Nalanda, Bihar 803116 (Opp. Hotel Stay Here)
+- **Registered Office:** At H 01, Vill Dattitellaha, Rajauli East Block, Nawada, Bihar 805125
+- **Official Email:** `devson.energy@gmail.com`
+- **Official Phones:** `+91 99730 50833` · `+91 92969 50833` (WhatsApp) · `+91 91133 02738`

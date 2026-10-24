@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "asa-epc-pvt--ltd",
+  "name": "devson-renewable-energy",
   "compatibility_date": "2026-10-19",
   "assets": {
     "directory": "./out"

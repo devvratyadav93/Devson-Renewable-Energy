@@ -2,18 +2,22 @@ import type { Metadata, Viewport } from 'next';
 import '../styles/tokens.css';
 import '../styles/globals.css';
 import '../styles/print.css';
+import { LanguageProvider } from '@/context/LanguageContext';
+import { Navigation } from '@/components/Navigation';
+import { Footer } from '@/components/Footer';
+import { FloatingDock } from '@/components/FloatingDock';
 
 export const metadata: Metadata = {
-  title: '12,500 KWp DC Grid-Connected Ground Mount Turnkey Solar Project — ASA EPC',
+  title: 'DEVSON Renewable Energy — PM Surya Ghar Rooftop Solar & Bihar Subsidy Platform',
   description:
-    'A techno-commercial offer prepared for D K Builders — Bawadiya Kala, Bhopal, MP, built on nine years of solar EPC delivery and a Waaree Energy partnership.',
+    'DEVSON Renewable Energy Private Limited — Powering Bihar with Green Energy. Official 1–10 kW rooftop solar installations under PM Surya Ghar Muft Bijli Yojana & Bihar state subsidies.',
   icons: {
-    icon: '/assets/logos/asa-epc-logo.png',
+    icon: '/assets/logos/devson-logo.png',
   },
   openGraph: {
-    title: '12,500 KWp DC Grid-Connected Ground Mount Turnkey Solar Project — ASA EPC',
+    title: 'DEVSON Renewable Energy — PM Surya Ghar Rooftop Solar & Bihar Subsidy Platform',
     description:
-      'A techno-commercial offer prepared for D K Builders — Bawadiya Kala, Bhopal, MP, built on nine years of solar EPC delivery and a Waaree Energy partnership.',
+      'DEVSON Renewable Energy Private Limited — Powering Bihar with Green Energy. Official 1–10 kW rooftop solar installations under PM Surya Ghar Muft Bijli Yojana & Bihar state subsidies.',
     type: 'website',
   },
 };
@@ -30,7 +34,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <LanguageProvider>
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+          <FloatingDock />
+        </LanguageProvider>
+      </body>
     </html>
   );
 }
