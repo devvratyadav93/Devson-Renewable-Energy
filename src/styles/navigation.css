@@ -58,20 +58,21 @@
 .nav-brand-name {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.35rem;
-  color: #FFFFFF;
-  letter-spacing: 0.06em;
+  font-size: 1.34rem;
+  letter-spacing: 0.05em;
   line-height: 1;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .nav-brand-sub {
-  font-size: 0.68rem;
-  color: var(--amber);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   margin-top: 3px;
-  line-height: 1;
+  line-height: 1.15;
+  white-space: nowrap;
+  color: #FFFFFF;
 }
 
 /* Nav Links Container */
@@ -391,16 +392,57 @@
   }
 }
 
-@media (max-width: 480px) {
-  .nav-brand-sub {
-    display: none;
+@media (max-width: 768px) {
+  .nav-logo {
+    height: 44px;
+    width: 44px;
   }
+  .nav-brand-name {
+    font-size: 1.18rem;
+  }
+  .nav-brand-sub {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 480px) {
   .nav-inner {
-    padding: 10px 14px;
+    padding: 8px 12px;
     gap: 8px;
   }
+  .nav-brand {
+    gap: 8px;
+  }
+  .nav-logo {
+    height: 38px;
+    width: 38px;
+  }
+  .nav-brand-name {
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+  .nav-brand-sub {
+    display: block !important;
+    font-size: 0.55rem;
+    letter-spacing: 0.02em;
+    margin-top: 2px;
+  }
   .lang-btn {
-    padding: 4px 8px;
-    font-size: 11px;
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-brand-name {
+    font-size: 0.96rem;
+  }
+  .nav-brand-sub {
+    font-size: 0.48rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-logo {
+    height: 32px;
+    width: 32px;
   }
 }

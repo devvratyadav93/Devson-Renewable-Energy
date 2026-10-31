@@ -29,8 +29,8 @@ export const HomeHighlightsSection: React.FC = () => {
       alt: 'ALMM Certified Monocrystalline Solar PV Modules',
     },
     {
-      src: '/assets/spotlight-bihar-team.jpg',
-      alt: 'DEVSON Rajgir and Nawada Field Engineering Presence',
+      src: '/assets/offices/rajgir-head-office.jpg',
+      alt: 'DEVSON Renewable Energy Corporate Headquarters Rajgir & Field Office',
     },
   ];
 

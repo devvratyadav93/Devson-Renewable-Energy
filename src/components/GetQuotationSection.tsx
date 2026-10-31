@@ -58,6 +58,9 @@ const schemeOptions = [
   { val: 'custom_consultation', label: 'Custom Solar Assessment / Feasibility Survey' },
 ];
 
+const billPresets = ['₹1,000 – ₹2,500', '₹2,500 – ₹4,000', '₹4,000 – ₹7,000', '₹7,000+'];
+const areaPresets = ['150 sq. ft.', '250 sq. ft.', '350 sq. ft.', '500+ sq. ft.'];
+
 export const GetQuotationSection: React.FC = () => {
   const { language } = useLanguage();
   const t = translations[language].getQuotation;
@@ -68,10 +71,21 @@ export const GetQuotationSection: React.FC = () => {
     phone: '',
     district: 'Nalanda / Rajgir',
     scheme: '3kw_surya_ghar',
-    monthlyBill: '',
-    roofArea: '',
+    monthlyBill: '₹2,500 – ₹4,000',
+    roofArea: '250 sq. ft.',
     message: '',
   });
+
+  // Settings for 6th and 7th point: preset selection vs custom input
+  const [billMode, setBillMode] = useState<'preset' | 'custom'>('preset');
+  const [roofAreaMode, setRoofAreaMode] = useState<'preset' | 'custom'>('preset');
+
+  // Mandatory policies acceptance checkboxes (a & b)
+  const [policyAccepted, setPolicyAccepted] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+
+  // Active policy details popup modal ('siteVisit' | 'privacy' | null)
+  const [activePolicyModal, setActivePolicyModal] = useState<'siteVisit' | 'privacy' | null>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -82,30 +96,59 @@ export const GetQuotationSection: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleBillPresetSelect = (preset: string) => {
+    setBillMode('preset');
+    setFormData((prev) => ({ ...prev, monthlyBill: preset }));
+  };
+
+  const handleBillCustomClick = () => {
+    setBillMode('custom');
+    if (billPresets.includes(formData.monthlyBill)) {
+      setFormData((prev) => ({ ...prev, monthlyBill: '' }));
+    }
+  };
+
+  const handleAreaPresetSelect = (preset: string) => {
+    setRoofAreaMode('preset');
+    setFormData((prev) => ({ ...prev, roofArea: preset }));
+  };
+
+  const handleAreaCustomClick = () => {
+    setRoofAreaMode('custom');
+    if (areaPresets.includes(formData.roofArea)) {
+      setFormData((prev) => ({ ...prev, roofArea: '' }));
+    }
+  };
+
+  const bothAccepted = policyAccepted && privacyAccepted;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (!bothAccepted) {
+      alert(t.bothPoliciesRequiredWarning);
+      return;
+    }
 
+    setIsSubmitting(true);
     const generatedRef = `DEVSON-QT-${Date.now().toString().slice(-6)}`;
     setRefId(generatedRef);
 
-    // Option A delivery: send payload to Web3Forms/email webhook if key configured, or local simulated delivery
     try {
       const payload = {
         access_key: 'DEVSON_RENEWABLE_DEMO_KEY',
-        subject: `New Solar Quotation Request: ${generatedRef} from ${formData.fullName}`,
+        subject: `New Solar Quotation Request: ${generatedRef} from ${formData.fullName} (${formData.district})`,
         from_name: 'DEVSON Solar Portal',
         replyto: formData.email,
         to: 'devson.energy@gmail.com',
         ...formData,
         quotationRefId: generatedRef,
+        policyAccepted: true,
+        privacyAccepted: true,
         timestamp: new Date().toISOString(),
       };
 
-      // Simulated network latency for realistic customer experience
       await new Promise((resolve) => setTimeout(resolve, 800));
 
-      // Attempt non-blocking dispatch if external endpoint is reachable
       try {
         await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
@@ -113,7 +156,7 @@ export const GetQuotationSection: React.FC = () => {
           body: JSON.stringify(payload),
         });
       } catch {
-        // Graceful fallback during offline / local test environments
+        // Fallback for offline / sandboxed execution
       }
 
       setIsSubmitting(false);
@@ -128,13 +171,17 @@ export const GetQuotationSection: React.FC = () => {
 
   const getWhatsAppUrl = () => {
     const text = encodeURIComponent(
-      `Hello DEVSON Renewable Energy, I have requested a solar quotation on your website.\n\n` +
+      `Hello DEVSON Renewable Energy, I have submitted an official quotation request on your website.\n\n` +
       `*Quotation Ref:* ${refId}\n` +
-      `*Name:* ${formData.fullName}\n` +
+      `*Applicant Name:* ${formData.fullName}\n` +
+      `*Phone:* ${formData.phone}\n` +
       `*District:* ${formData.district}\n` +
-      `*Scheme:* ${selectedSchemeObj?.label || formData.scheme}\n` +
-      `*Monthly Bill:* ₹${formData.monthlyBill || 'N/A'}\n\n` +
-      `Please provide further guidance on my site inspection and subsidy processing.`
+      `*Selected Scheme:* ${selectedSchemeObj?.label || formData.scheme}\n` +
+      `*Monthly Bill:* ${formData.monthlyBill || 'N/A'}\n` +
+      `*Roof Area:* ${formData.roofArea || 'N/A'}\n\n` +
+      `*Accepted Policies:* Engineering Site Visit & Floor-Level Policy + Corporate Privacy Policy.\n\n` +
+      `*Note:* The final price may vary during the engineer's site visit, depending on your rooftop floor level.\n\n` +
+      `Please schedule my site feasibility survey.`
     );
     return `https://wa.me/919296950833?text=${text}`;
   };
@@ -142,266 +189,310 @@ export const GetQuotationSection: React.FC = () => {
   return (
     <section id="quotation" className="quotation-section">
       <div className="wrap">
-        <div className="section-head text-center" style={{ margin: '0 auto 36px', textAlign: 'center' }}>
-          <div className="sec-num" style={{ justifyContent: 'center' }}>
-            <span className="sec-num-text">{t.badge}</span>
-          </div>
-          <h2 className="sec-heading">{t.title}</h2>
-          <p style={{ maxWidth: '780px', margin: '0 auto' }}>{t.subtitle}</p>
-        </div>
+        {/* Master Quotation Card (Includes Section Header + 3 Sub-sections on White Background) */}
+        <div className="q-master-card reveal">
+          <div className="q-card-top-stripe"></div>
 
-        {/* Microsoft Forms Card Shell */}
-        <div className="ms-form-shell reveal">
-          <div className="ms-form-accent-strip"></div>
-
-          {/* Form Header Card */}
-          <div className="ms-form-header">
-            <div className="ms-form-meta-row">
-              <span className="ms-meta-badge">
-                🏢 {language === 'en' ? 'DEVSON Official Bihar Proposal' : 'देवसन अधिकृत बिहार प्रस्ताव'}
-              </span>
-              <span className="ms-meta-badge">
-                ⏱️ {language === 'en' ? '~2 min to complete' : '~2 मिनट का समय'}
-              </span>
-              <span className="ms-meta-badge">
-                🔒 {language === 'en' ? 'SSL Encrypted & Confidential' : 'सुरक्षित एवं गोपनीय'}
-              </span>
-              <span className="ms-meta-required">
-                * {language === 'en' ? 'Required fields' : 'अनिवार्य क्षेत्र'}
-              </span>
-            </div>
-
-            <h3 className="ms-form-title">{t.title}</h3>
-            <p className="ms-form-desc">{t.subtitle}</p>
+          {/* Master Card Header: QUOTATION Heading (Bold & Underlined), Sub-Heading, Subtitle */}
+          <div className="q-card-header text-center">
+            <h1 className="q-card-main-heading">
+              {t.badge}
+            </h1>
+            <h2 className="q-card-subheading">
+              {t.title}
+            </h2>
+            <p className="q-card-subtitle">
+              {t.subtitle}
+            </p>
           </div>
 
-          {/* Form Body with Numbered Sections */}
-          <form onSubmit={handleSubmit} className="ms-form-body">
-            {/* Section 1: Contact & Location */}
-            <div className="ms-section-header">
-              <span className="ms-sec-pill">{language === 'en' ? 'Section 1' : 'भाग 1'}</span>
-              <h4 className="ms-sec-title">
-                {language === 'en' ? 'Applicant & Contact Details' : 'आवेदक एवं संपर्क विवरण'}
-              </h4>
-            </div>
+          <form onSubmit={handleSubmit} className="q-card-form">
 
-            <div className="ms-question-grid">
-              {/* Question 1: Full Name */}
-              <div className="ms-question-block">
-                <label htmlFor="fullName" className="ms-q-label">
-                  <span className="ms-q-num">1.</span>
-                  <span>{t.fullNameLabel}</span>
-                </label>
-                <input
-                  type="text"
-                  id="fullName"
-                  name="fullName"
-                  required
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  placeholder={t.fullNamePlaceholder}
-                  className="ms-input"
-                />
+            {/* ============================================================== */}
+            {/* SECTION 1: APPLICANT IDENTITY & SITE LOCATION                  */}
+            {/* ============================================================== */}
+            <div className="q-section-block">
+              <div className="q-section-header">
+                <div className="q-sec-title-bar">
+                  <span className="q-sec-step">01</span>
+                  <h4 className="q-sec-title">{t.sec1Title}</h4>
+                </div>
+                <div className="q-sec-divider" aria-hidden="true" />
               </div>
 
-              {/* Question 2: Email Address */}
-              <div className="ms-question-block">
-                <label htmlFor="email" className="ms-q-label">
-                  <span className="ms-q-num">2.</span>
-                  <span>{t.emailLabel}</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder={t.emailPlaceholder}
-                  className="ms-input"
-                />
-                <span className="ms-field-hint">
-                  {language === 'en'
-                    ? 'A formal quotation summary will be dispatched here.'
-                    : 'औपचारिक प्रस्ताव की प्रति इस पते पर भेजी जाएगी।'}
-                </span>
-              </div>
-
-              {/* Question 3: Phone Number */}
-              <div className="ms-question-block">
-                <label htmlFor="phone" className="ms-q-label">
-                  <span className="ms-q-num">3.</span>
-                  <span>{t.phoneLabel}</span>
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  required
-                  pattern="[0-9]{10}"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder={t.phonePlaceholder}
-                  className="ms-input"
-                />
-              </div>
-
-              {/* Question 4: District in Bihar */}
-              <div className="ms-question-block">
-                <label htmlFor="district" className="ms-q-label">
-                  <span className="ms-q-num">4.</span>
-                  <span>{t.districtLabel}</span>
-                </label>
-                <select
-                  id="district"
-                  name="district"
-                  required
-                  value={formData.district}
-                  onChange={handleChange}
-                  className="ms-select"
-                >
-                  {biharDistricts.map((d) => (
-                    <option key={d} value={d}>
-                      {d}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            {/* Section 2: Solar System & Subsidy Scheme */}
-            <div className="ms-section-header">
-              <span className="ms-sec-pill">{language === 'en' ? 'Section 2' : 'भाग 2'}</span>
-              <h4 className="ms-sec-title">
-                {language === 'en' ? 'Solar Capacity & Subsidy Scheme' : 'सोलर क्षमता एवं सब्सिडी योजना'}
-              </h4>
-            </div>
-
-            <div className="ms-question-grid">
-              {/* Question 5: Desired Scheme */}
-              <div className="ms-question-block ms-q-full">
-                <label htmlFor="scheme" className="ms-q-label">
-                  <span className="ms-q-num">5.</span>
-                  <span>{t.schemeLabel}</span>
-                </label>
-
-                {/* Quick Selection Choice Chips (MS Forms style) */}
-                <div className="ms-choice-chips">
-                  {[
-                    { val: '1kw_surya_ghar', label: '1 kW' },
-                    { val: '2kw_surya_ghar', label: '2 kW' },
-                    { val: '3kw_surya_ghar', label: '3 kW ★ Most Popular' },
-                    { val: '4kw_surya_ghar', label: '4 kW' },
-                    { val: '5kw_surya_ghar', label: '5 kW' },
-                    { val: '6kw_to_10kw', label: '6–10 kW' },
-                    { val: 'commercial_msme', label: 'Commercial (>10kW)' },
-                    { val: 'pm_kusum_pump', label: 'PM-KUSUM Agri Pump' },
-                  ].map((chip) => (
-                    <button
-                      key={chip.val}
-                      type="button"
-                      className={`ms-chip-btn ${formData.scheme === chip.val ? 'active' : ''}`}
-                      onClick={() => setFormData((prev) => ({ ...prev, scheme: chip.val }))}
-                    >
-                      {chip.label}
-                    </button>
-                  ))}
+              <div className="q-sec1-grid">
+                {/* 1. Full Name */}
+                <div className="q-col-cell">
+                  <label htmlFor="fullName" className="q-label">
+                    <span className="q-num">1.</span>
+                    <span>{t.fullNameLabel}</span>
+                  </label>
+                  <div className="q-input-wrap">
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      required
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      placeholder={t.fullNamePlaceholder}
+                      className="q-input"
+                    />
+                  </div>
                 </div>
 
-                <select
-                  id="scheme"
-                  name="scheme"
-                  required
-                  value={formData.scheme}
-                  onChange={handleChange}
-                  className="ms-select ms-select-highlight"
-                >
-                  {schemeOptions.map((opt) => (
-                    <option key={opt.val} value={opt.val}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Question 6: Monthly Bill */}
-              <div className="ms-question-block">
-                <label htmlFor="monthlyBill" className="ms-q-label">
-                  <span className="ms-q-num">6.</span>
-                  <span>{t.monthlyBillLabel}</span>
-                </label>
-
-                {/* Quick bill choice chips */}
-                <div className="ms-choice-chips">
-                  {['₹1,000 – ₹2,500', '₹2,500 – ₹4,000', '₹4,000 – ₹7,000', '₹7,000+'].map((chip) => (
-                    <button
-                      key={chip}
-                      type="button"
-                      className={`ms-chip-btn ${formData.monthlyBill === chip ? 'active' : ''}`}
-                      onClick={() => setFormData((prev) => ({ ...prev, monthlyBill: chip }))}
-                    >
-                      {chip}
-                    </button>
-                  ))}
+                {/* 2. Phone / WhatsApp Number */}
+                <div className="q-col-cell">
+                  <label htmlFor="phone" className="q-label">
+                    <span className="q-num">2.</span>
+                    <span>{t.phoneLabel}</span>
+                  </label>
+                  <div className="q-phone-input-group">
+                    <span className="q-phone-prefix">🇮🇳 +91</span>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      pattern="[0-9]{10}"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder={t.phonePlaceholder}
+                      className="q-input q-phone-input"
+                    />
+                  </div>
                 </div>
 
-                <input
-                  type="text"
-                  id="monthlyBill"
-                  name="monthlyBill"
-                  value={formData.monthlyBill}
-                  onChange={handleChange}
-                  placeholder={t.monthlyBillPlaceholder}
-                  className="ms-input"
-                />
-              </div>
-
-              {/* Question 7: Roof Area */}
-              <div className="ms-question-block">
-                <label htmlFor="roofArea" className="ms-q-label">
-                  <span className="ms-q-num">7.</span>
-                  <span>{t.roofAreaLabel}</span>
-                </label>
-
-                {/* Quick area choice chips */}
-                <div className="ms-choice-chips">
-                  {['100 – 200 sq.ft', '200 – 350 sq.ft', '350 – 500 sq.ft', '600+ sq.ft'].map((chip) => (
-                    <button
-                      key={chip}
-                      type="button"
-                      className={`ms-chip-btn ${formData.roofArea === chip ? 'active' : ''}`}
-                      onClick={() => setFormData((prev) => ({ ...prev, roofArea: chip }))}
-                    >
-                      {chip}
-                    </button>
-                  ))}
+                {/* 3. Email Address */}
+                <div className="q-col-cell">
+                  <label htmlFor="email" className="q-label">
+                    <span className="q-num">3.</span>
+                    <span>{t.emailLabel}</span>
+                  </label>
+                  <div className="q-input-wrap">
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder={t.emailPlaceholder}
+                      className="q-input"
+                    />
+                  </div>
                 </div>
 
-                <input
-                  type="text"
-                  id="roofArea"
-                  name="roofArea"
-                  value={formData.roofArea}
-                  onChange={handleChange}
-                  placeholder={t.roofAreaPlaceholder}
-                  className="ms-input"
-                />
+                {/* 4. District in Bihar */}
+                <div className="q-col-cell">
+                  <label htmlFor="district" className="q-label">
+                    <span className="q-num">4.</span>
+                    <span>{t.districtLabel}</span>
+                  </label>
+                  <div className="q-input-wrap">
+                    <select
+                      id="district"
+                      name="district"
+                      required
+                      value={formData.district}
+                      onChange={handleChange}
+                      className="q-select"
+                    >
+                      {biharDistricts.map((d) => (
+                        <option key={d} value={d}>
+                          {d}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Section 3: Notes & Special Requirements */}
-            <div className="ms-section-header">
-              <span className="ms-sec-pill">{language === 'en' ? 'Section 3' : 'भाग 3'}</span>
-              <h4 className="ms-sec-title">
-                {language === 'en' ? 'Property Specifications & Remarks (Optional)' : 'छत का विवरण एवं विशेष टिप्पणी (वैकल्पिक)'}
-              </h4>
+            {/* ============================================================== */}
+            {/* SECTION 2: SOLAR SIZING & CONSUMPTION (3 COLUMNS)              */}
+            {/* ============================================================== */}
+            <div className="q-section-block">
+              <div className="q-section-header">
+                <div className="q-sec-title-bar">
+                  <span className="q-sec-step">02</span>
+                  <h4 className="q-sec-title">{t.sec2Title}</h4>
+                </div>
+                <div className="q-sec-divider" aria-hidden="true" />
+              </div>
+
+              <div className="q-grid-3col q-align-stretch">
+                {/* Column 1: Point 5 — Desired Scheme & System Sizing */}
+                <div className="q-col-cell q-cell-elevated">
+                  <label htmlFor="scheme" className="q-label">
+                    <span className="q-num">5.</span>
+                    <span>{t.schemeLabel}</span>
+                  </label>
+
+                  {/* Quick selection choice chips */}
+                  <div className="q-chips-grid">
+                    {[
+                      { val: '1kw_surya_ghar', label: '1 kW' },
+                      { val: '2kw_surya_ghar', label: '2 kW' },
+                      { val: '3kw_surya_ghar', label: '3 kW ★ Pop' },
+                      { val: '4kw_surya_ghar', label: '4 kW' },
+                      { val: '5kw_surya_ghar', label: '5 kW' },
+                      { val: '6kw_to_10kw', label: '6–10 kW' },
+                      { val: 'commercial_msme', label: 'Commercial' },
+                      { val: 'pm_kusum_pump', label: 'Agri Pump' },
+                    ].map((chip) => (
+                      <button
+                        key={chip.val}
+                        type="button"
+                        className={`q-chip-btn ${formData.scheme === chip.val ? 'active' : ''}`}
+                        onClick={() => setFormData((prev) => ({ ...prev, scheme: chip.val }))}
+                      >
+                        {chip.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <select
+                    id="scheme"
+                    name="scheme"
+                    required
+                    value={formData.scheme}
+                    onChange={handleChange}
+                    className="q-select q-select-highlight"
+                  >
+                    {schemeOptions.map((opt) => (
+                      <option key={opt.val} value={opt.val}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Column 2: Point 6 — Average Monthly Electricity Bill */}
+                <div className="q-col-cell q-cell-elevated">
+                  <div className="q-label-with-mode">
+                    <label htmlFor="monthlyBill" className="q-label">
+                      <span className="q-num">6.</span>
+                      <span>{t.monthlyBillLabel}</span>
+                    </label>
+                  </div>
+
+                  {/* Preset Chips + Custom Mode Button */}
+                  <div className="q-chips-grid">
+                    {billPresets.map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        className={`q-chip-btn ${billMode === 'preset' && formData.monthlyBill === preset ? 'active' : ''}`}
+                        onClick={() => handleBillPresetSelect(preset)}
+                      >
+                        {preset}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      className={`q-chip-btn q-custom-toggle-btn ${billMode === 'custom' ? 'active' : ''}`}
+                      onClick={handleBillCustomClick}
+                    >
+                      {t.customBtn}
+                    </button>
+                  </div>
+
+                  {/* Text Input (Auto-shows when Custom, or shows editable value) */}
+                  <div className="q-input-wrap">
+                    <span className="q-affix-currency">₹</span>
+                    <input
+                      type="text"
+                      id="monthlyBill"
+                      name="monthlyBill"
+                      value={formData.monthlyBill}
+                      onChange={(e) => {
+                        setBillMode('custom');
+                        handleChange(e);
+                      }}
+                      placeholder={billMode === 'custom' ? t.customBillPlaceholder : t.monthlyBillPlaceholder}
+                      className={`q-input q-has-currency ${billMode === 'custom' ? 'q-custom-active-input' : ''}`}
+                    />
+                  </div>
+                  <span className="q-field-hint">
+                    {billMode === 'custom'
+                      ? (language === 'en' ? 'Custom bill mode active: type your exact monthly bill amount.' : 'कस्टम मोड सक्रिय: अपना सटीक मासिक बिल दर्ज करें।')
+                      : (language === 'en' ? 'Select a preset above or click Custom to type exact bill.' : 'ऊपर से विकल्प चुनें या कस्टम पर क्लिक कर सटीक बिल लिखें।')}
+                  </span>
+                </div>
+
+                {/* Column 3: Point 7 — Approximate Available Roof Area */}
+                <div className="q-col-cell q-cell-elevated">
+                  <div className="q-label-with-mode">
+                    <label htmlFor="roofArea" className="q-label">
+                      <span className="q-num">7.</span>
+                      <span>{t.roofAreaLabel}</span>
+                    </label>
+                  </div>
+
+                  {/* Preset Chips + Custom Mode Button */}
+                  <div className="q-chips-grid">
+                    {areaPresets.map((preset) => (
+                      <button
+                        key={preset}
+                        type="button"
+                        className={`q-chip-btn ${roofAreaMode === 'preset' && formData.roofArea === preset ? 'active' : ''}`}
+                        onClick={() => handleAreaPresetSelect(preset)}
+                      >
+                        {preset}
+                      </button>
+                    ))}
+                    <button
+                      type="button"
+                      className={`q-chip-btn q-custom-toggle-btn ${roofAreaMode === 'custom' ? 'active' : ''}`}
+                      onClick={handleAreaCustomClick}
+                    >
+                      {t.customBtn}
+                    </button>
+                  </div>
+
+                  {/* Text Input (Auto-shows when Custom, or shows editable value) */}
+                  <div className="q-input-wrap">
+                    <input
+                      type="text"
+                      id="roofArea"
+                      name="roofArea"
+                      value={formData.roofArea}
+                      onChange={(e) => {
+                        setRoofAreaMode('custom');
+                        handleChange(e);
+                      }}
+                      placeholder={roofAreaMode === 'custom' ? t.customAreaPlaceholder : t.roofAreaPlaceholder}
+                      className={`q-input ${roofAreaMode === 'custom' ? 'q-custom-active-input' : ''}`}
+                    />
+                  </div>
+                  <span className="q-field-hint">
+                    {roofAreaMode === 'custom'
+                      ? (language === 'en' ? 'Custom roof area mode active: enter your available sq. ft.' : 'कस्टम मोड सक्रिय: अपना उपलब्ध वर्ग फुट क्षेत्रफल लिखें।')
+                      : (language === 'en' ? 'Rule of thumb: ~80 sq. ft. shadow-free roof required per 1 kW.' : 'सामान्य नियम: प्रति 1 kW हेतु ~80 वर्ग फुट छाया-मुक्त छत चाहिए।')}
+                  </span>
+                </div>
+              </div>
             </div>
 
-            <div className="ms-question-grid">
-              <div className="ms-question-block ms-q-full">
-                <label htmlFor="message" className="ms-q-label">
-                  <span className="ms-q-num">8.</span>
+            {/* ============================================================== */}
+            {/* SECTION 3: SPECIFICATIONS, POLICIES & FORMAL ACCEPTANCE        */}
+            {/* ============================================================== */}
+            <div className="q-section-block">
+              <div className="q-section-header">
+                <div className="q-sec-title-bar">
+                  <span className="q-sec-step">03</span>
+                  <h4 className="q-sec-title">{t.sec3Title}</h4>
+                </div>
+                <div className="q-sec-divider" aria-hidden="true" />
+              </div>
+
+              {/* Point 8: Full Width Remarks & Notes Textarea */}
+              <div className="q-point8-fullwidth">
+                <label htmlFor="message" className="q-label">
+                  <span className="q-num">8.</span>
                   <span>{t.messageLabel}</span>
+                  <span className="q-optional-tag">({language === 'en' ? 'Optional' : 'वैकल्पिक'})</span>
                 </label>
                 <textarea
                   id="message"
@@ -410,101 +501,280 @@ export const GetQuotationSection: React.FC = () => {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder={t.messagePlaceholder}
-                  className="ms-textarea"
+                  className="q-textarea q-textarea-full"
                 ></textarea>
-              </div>
-            </div>
-
-            {/* MS Forms Submission Footer */}
-            <div className="ms-form-footer">
-              <div className="ms-footer-notice">
-                <div className="ms-notice-line">
-                  <span>✉ {t.notificationNotice}</span>
-                </div>
-                <div className="ms-security-line">
-                  <span>🔒 {language === 'en' ? 'Never submit sensitive passwords. Form submission is verified and processed under DEVSON corporate data privacy protocols.' : 'पासवर्ड कभी साझा न करें। यह फॉर्म देवसन डेटा गोपनीयता प्रोटोकॉल के अंतर्गत सुरक्षित है।'}</span>
-                </div>
+                <span className="q-field-hint">
+                  {language === 'en'
+                    ? 'Mention your roof surface type (RCC flat, tin/metal shed, elevated structure), floor height, or specific site access notes.'
+                    : 'अपनी छत का प्रकार (आरसीसी समतल, टिन शेड, एलिवेटेड स्ट्रक्चर), छत की मंजिल या कोई विशेष निर्देश साझा करें।'}
+                </span>
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="ms-submit-btn"
-              >
-                {isSubmitting ? (
-                  <>
-                    <span className="spinner"></span> {t.submittingBtn}
-                  </>
-                ) : (
-                  <>
-                    ⚡ {t.submitBtn} →
-                  </>
+              {/* Compact Policy A Card: Engineering Site Visit & Pricing Policy */}
+              <div className={`q-compact-policy-card ${policyAccepted ? 'is-accepted' : ''}`}>
+                <div className="q-compact-policy-main">
+                  <label className="q-compact-check-label">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={policyAccepted}
+                      onChange={(e) => setPolicyAccepted(e.target.checked)}
+                      className="q-checkbox-input"
+                    />
+                    <div className="q-compact-policy-text">
+                      <div className="q-compact-title-row">
+                        <span className="q-compact-tag">{t.policySectionTitle}</span>
+                        <span className="q-required-star">*</span>
+                      </div>
+                      <p className="q-compact-snippet">
+                        {t.floorLevelNote}
+                      </p>
+                    </div>
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  className="q-btn-read-policy"
+                  onClick={() => setActivePolicyModal('siteVisit')}
+                >
+                  {t.readDetailsBtn}
+                </button>
+              </div>
+
+              {/* Compact Policy B Card: Corporate Data Privacy & Security Policy */}
+              <div className={`q-compact-policy-card ${privacyAccepted ? 'is-accepted' : ''}`}>
+                <div className="q-compact-policy-main">
+                  <label className="q-compact-check-label">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={privacyAccepted}
+                      onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                      className="q-checkbox-input"
+                    />
+                    <div className="q-compact-policy-text">
+                      <div className="q-compact-title-row">
+                        <span className="q-compact-tag">{t.privacySectionTitle}</span>
+                        <span className="q-required-star">*</span>
+                      </div>
+                      <p className="q-compact-snippet">
+                        {t.privacySummaryDesc}
+                      </p>
+                    </div>
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  className="q-btn-read-policy"
+                  onClick={() => setActivePolicyModal('privacy')}
+                >
+                  {t.readDetailsBtn}
+                </button>
+              </div>
+
+              {/* Full Width Submission Row */}
+              <div className="q-fullwidth-submit-row">
+                <button
+                  type="submit"
+                  disabled={isSubmitting || !bothAccepted}
+                  className={`q-master-submit-btn ${!bothAccepted ? 'btn-disabled' : ''}`}
+                >
+                  {isSubmitting ? (
+                    <span className="q-btn-spinner-wrap">
+                      <span className="q-btn-spinner"></span>
+                      <span>{t.submittingBtn}</span>
+                    </span>
+                  ) : !bothAccepted ? (
+                    <span>{t.acceptBothToSubmit}</span>
+                  ) : (
+                    <span>{t.submitBtn} →</span>
+                  )}
+                </button>
+
+                {!bothAccepted && (
+                  <div className="q-both-policies-alert">
+                    <span>{t.bothPoliciesRequiredWarning}</span>
+                  </div>
                 )}
-              </button>
+
+                <div className="q-submit-security-note">
+                  <span>{t.notificationNotice}</span>
+                </div>
+              </div>
             </div>
+
           </form>
         </div>
       </div>
 
-      {/* Success Modal */}
+      {/* ============================================================== */}
+      {/* Quotation Success Confirmation Modal */}
+      {/* ============================================================== */}
       {modalOpen && (
-        <div className="quotation-modal-overlay">
-          <div className="quotation-modal">
-            <div className="modal-header">
-              <div className="modal-badge">✓ QUOTATION GENERATED</div>
-              <h3 className="modal-title">{t.modalTitle}</h3>
-              <p className="modal-sub">{t.modalSub}</p>
+        <div className="q-modal-backdrop" onClick={() => setModalOpen(false)}>
+          <div className="q-modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="q-modal-head">
+              <div className="q-modal-icon-circle">✓</div>
+              <h3 className="q-modal-title">{t.modalTitle}</h3>
+              <p className="q-modal-sub">{t.modalSub}</p>
+              <div className="q-modal-ref-badge">
+                <span>{t.refNumberLabel}</span>
+                <strong>{refId}</strong>
+              </div>
             </div>
 
-            <div className="modal-body">
-              <div className="ref-box">
-                <span className="ref-label">{t.refNumberLabel}</span>
-                <strong className="ref-value">{refId}</strong>
-              </div>
+            <div className="q-modal-body">
+              <h4 className="q-modal-summary-title">{t.summaryHeading}</h4>
 
-              <div className="summary-list">
-                <div className="summary-item">
-                  <span className="s-label">Applicant:</span>
-                  <span className="s-val">{formData.fullName}</span>
+              <div className="q-modal-summary-grid">
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'Applicant Name:' : 'आवेदक का नाम:'}</span>
+                  <span className="q-sr-val">{formData.fullName}</span>
                 </div>
-                <div className="summary-item">
-                  <span className="s-label">Email:</span>
-                  <span className="s-val">{formData.email}</span>
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'Phone / WhatsApp:' : 'फोन / व्हाट्सएप:'}</span>
+                  <span className="q-sr-val">+91 {formData.phone}</span>
                 </div>
-                <div className="summary-item">
-                  <span className="s-label">District:</span>
-                  <span className="s-val">{formData.district}</span>
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'Email Address:' : 'ईमेल पता:'}</span>
+                  <span className="q-sr-val">{formData.email}</span>
                 </div>
-                <div className="summary-item">
-                  <span className="s-label">Selected Scheme:</span>
-                  <span className="s-val highlight">{selectedSchemeObj?.label}</span>
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'District in Bihar:' : 'बिहार में जिला:'}</span>
+                  <span className="q-sr-val">{formData.district}</span>
+                </div>
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'Selected Scheme:' : 'चयनित सोलर सिस्टम:'}</span>
+                  <span className="q-sr-val font-bold text-amber">{selectedSchemeObj?.label}</span>
                 </div>
                 {formData.monthlyBill && (
-                  <div className="summary-item">
-                    <span className="s-label">Monthly Bill:</span>
-                    <span className="s-val">₹{formData.monthlyBill}</span>
+                  <div className="q-summary-row">
+                    <span className="q-sr-label">{language === 'en' ? 'Monthly Bill:' : 'मासिक बिल:'}</span>
+                    <span className="q-sr-val">{formData.monthlyBill}</span>
                   </div>
                 )}
+                {formData.roofArea && (
+                  <div className="q-summary-row">
+                    <span className="q-sr-label">{language === 'en' ? 'Roof Area:' : 'छत का क्षेत्रफल:'}</span>
+                    <span className="q-sr-val">{formData.roofArea}</span>
+                  </div>
+                )}
+                <div className="q-summary-row">
+                  <span className="q-sr-label">{language === 'en' ? 'Accepted Guidelines:' : 'स्वीकृत नीतियां:'}</span>
+                  <span className="q-sr-val font-semibold text-green">✓ Site Visit & Privacy Policies</span>
+                </div>
               </div>
 
-              <div className="modal-notice">
-                {t.emailSentNotice}
+              {/* Floor Level Site Visit Advisory Banner */}
+              <div className="q-modal-floor-callout">
+                <span>{t.floorLevelNote}</span>
+              </div>
+
+              <div className="q-modal-email-notice">
+                <span>{t.emailSentNotice}</span>
               </div>
             </div>
 
-            <div className="modal-actions">
+            <div className="q-modal-actions">
               <a
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-modal-whatsapp"
+                className="q-modal-btn-whatsapp"
               >
                 💬 {t.btnWhatsApp}
               </a>
               <button
                 type="button"
                 onClick={() => setModalOpen(false)}
-                className="btn-modal-close"
+                className="q-modal-btn-close"
+              >
+                {t.btnClose}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ============================================================== */}
+      {/* Policy Details Popup Modal (Engineering Site Visit or Privacy) */}
+      {/* ============================================================== */}
+      {activePolicyModal && (
+        <div className="q-modal-backdrop" onClick={() => setActivePolicyModal(null)}>
+          <div className="q-policy-modal-dialog" onClick={(e) => e.stopPropagation()}>
+            <div className="q-policy-modal-head">
+              <div className="q-policy-modal-head-left">
+                <span className="q-policy-modal-tag">
+                  {activePolicyModal === 'siteVisit' ? 'ENGINEERING ADVISORY' : 'DATA PRIVACY'}
+                </span>
+                <h3 className="q-policy-modal-title">
+                  {activePolicyModal === 'siteVisit' ? t.policySectionTitle : t.privacySectionTitle}
+                </h3>
+              </div>
+              <button
+                type="button"
+                className="q-policy-modal-close-icon"
+                onClick={() => setActivePolicyModal(null)}
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="q-policy-modal-body">
+              {activePolicyModal === 'siteVisit' ? (
+                <>
+                  <div className="q-modal-floor-callout">
+                    <span>{t.floorLevelNote}</span>
+                  </div>
+                  <div className="q-policy-paragraphs">
+                    <p className="q-policy-p">
+                      <strong>1. {language === 'en' ? 'Rooftop Floor Level & Cabling Variance:' : 'छत की मंजिल एवं केबलिंग दूरी:'}</strong> {t.policyP1}
+                    </p>
+                    <p className="q-policy-p">
+                      <strong>2. {language === 'en' ? 'Physical Shadow Feasibility & Sanction:' : 'छाया-मुक्त फिजिबिलिटी एवं ग्रिड स्वीकृति:'}</strong> {t.policyP2}
+                    </p>
+                    <p className="q-policy-p">
+                      <strong>3. {language === 'en' ? 'Direct Benefit Transfer (DBT) Subsidy Credit:' : 'सीधे बैंक खाते में डीबीटी सब्सिडी:'}</strong> {t.policyP3}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="q-modal-floor-callout">
+                    <span>{language === 'en' ? 'SSL 256-Bit Encrypted Data Governance · Certified Engineering Desk' : '256-बिट सुरक्षित एसएसएल डेटा ट्रांसमिशन · प्रमाणित इंजीनियरिंग डेस्क'}</span>
+                  </div>
+                  <div className="q-policy-paragraphs">
+                    <p className="q-policy-p">
+                      <strong>1. {language === 'en' ? 'Confidentiality & Fair Use:' : 'पूर्ण गोपनीयता एवं डेटा सुरक्षा:'}</strong> {t.privacyP1}
+                    </p>
+                    <p className="q-policy-p">
+                      <strong>2. {language === 'en' ? 'Zero Third-Party Sharing:' : 'शून्य तृतीय-पक्ष प्रकटीकरण:'}</strong> {t.privacyP2}
+                    </p>
+                    <p className="q-policy-p">
+                      <strong>3. {language === 'en' ? 'Direct Dual Notification:' : 'द्वि-स्तरीय त्वरित सूचना:'}</strong> {t.privacyP3}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
+
+            <div className="q-policy-modal-actions">
+              <button
+                type="button"
+                className="q-btn-modal-accept"
+                onClick={() => {
+                  if (activePolicyModal === 'siteVisit') setPolicyAccepted(true);
+                  if (activePolicyModal === 'privacy') setPrivacyAccepted(true);
+                  setActivePolicyModal(null);
+                }}
+              >
+                {t.modalAcceptBtn}
+              </button>
+              <button
+                type="button"
+                className="q-btn-modal-dismiss"
+                onClick={() => setActivePolicyModal(null)}
               >
                 {t.btnClose}
               </button>

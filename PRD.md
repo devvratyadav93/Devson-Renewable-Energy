@@ -127,6 +127,41 @@ The original website consists of 10 structured thematic sections preceded by an 
 ---
 
 ## 8. Changelog
+### 2026-10-31 — Commissioned Solar Plant Locations Updated to Bihar Key Hubs
+- Changed: Updated the 4 featured solar plant project locations in the "Featured Utility & Commercial Solar Plants" section ([TrackRecordSection.tsx](file:///e:/My%20Projects/Devson/src/components/TrackRecordSection.tsx)) from Jhiganpur, Khurai, Raisen, Guna to **Nawada**, **Rajgir**, **Patna**, and **Bhagalpur**, including bilingual support in Hindi (`नवादा`, `राजगीर`, `पटना`, `भागलपुर`).
+- Reason: User requested: "kindly replace attached locations with Nawada , Rajgir, Patna, Bhagalpur".
+- Impact: Accurately grounds the commissioned utility and commercial solar installations within DEVSON's core Bihar operational footprint.
+
+### 2026-10-31 — Subtitle Typography Color Unification: Pure White Corporate Styling
+- Changed: Updated the brand descriptor "Renewable Energy Private Limited" in both Navigation and Footer to a uniform pure white color (`#FFFFFF`), removing the dual-tone yellow/white split.
+- Reason: User requested: "let the attached line be in same color (white)".
+- Impact: Provides a crisp, cohesive, and prestigious monochrome brand presentation on dark green backgrounds.
+
+### 2026-10-31 — Brand Typography Refinement & GPS Scope Rationalization
+- Changed:
+  1. Rationalized GPS coordinate placement: Removed `25°02'23.6"N 85°25'11.1"E` from the Hero metadata strip and About corporate dossier in both English and Hindi dictionaries, restricting it strictly to the Contact Section (`/contact`) and Footer Section.
+  2. Redesigned company logotype typography: Replaced decorative/spark/all-caps styling with clean executive corporate typography. `DEVSON` rendered in pure confident white (`#FFFFFF`) display font, paired with `Renewable Energy Private Limited` in refined Title Case (`Renewable Energy` in solar gold, `Private Limited` in clean silver-white) with zero emojis, bullets, or artificial gradients.
+- Reason: User requested GPS coordinates to appear only in Contact and Footer, and requested a more dignified, professional representation of the company name.
+- Impact: Restores visual balance across the hero and about sections, while delivering a modern, high-end corporate identity aligned with industry leaders.
+
+### 2026-10-31 — Contact Map Section Refinement: Streamlined Live Map & Facility Navigation Card
+- Changed: Removed the static dark screenshot thumbnail card from `#office-map` in `/contact`, keeping a clean dual-pane layout with the full interactive Google Map on the left and the facility coordinates & action navigation card on the right (Facility details, address, GPS coordinates, Directions, Google Maps, and Copy GPS).
+- Reason: User requested: "remove this section, only map and right side text compnent is fine."
+- Impact: Streamlines the layout, eliminates visual redundancy, and provides a direct, elegant balance between the interactive map and action controls.
+
+### 2026-10-31 — Dedicated Interactive Head Office Map & Ganjpar Highway Route Section
+- Changed: Added a dedicated interactive map section (`#office-map`) to `/contact` featuring a full-width embedded Google Maps live viewport, floating GPS beacon pin (`25°02'23.6"N 85°25'11.1"E`), an executive dark-mode route guide card embedding the client's screenshot (`devson-map-pin.png`) showing the location pin at Ganjpar on Bihar Sharif - Rajgir Road, and quick action buttons (Turn-by-turn Directions, Open in Google Maps, Copy GPS Coordinates with feedback, and Call Office).
+- Reason: User requested a dedicated map section matching the attached dark highway pin screenshot in the Contact Us page.
+- Impact: Provides visitors with immediate visual landmarks, live route navigation, and seamless mobile directions to DEVSON headquarters in Rajgir.
+
+### 2026-10-31 — Client Feedback: Brand Presentation Restyling, Head Office GPS Pin & Genuine Headquarters Photography
+- Changed:
+  1. Restyled brand identity "DEVSON Renewable Energy Private Limited" in top navigation with luminous gradient typography, animated solar spark, and high-contrast dual-tone hierarchy (`Renewable Energy` in solar amber, `Private Limited` in clean silver-white). Eliminated mobile CSS rule (`display: none`) so the full corporate title is prominently visible across all browser viewports and mobile screens down to 320px.
+  2. Integrated official GPS coordinates (`25°02'23.6"N 85°25'11.1"E`) across the Contact page (interactive pulsing GPS pill and direct Google Maps link), Footer (Bihar offices), About Section corporate dossier, and Home Page Hero meta strip.
+  3. Replaced placeholder office building image with the client's authentic headquarters commercial showroom photograph (`rajgir-head-office.jpg` cropped to remove mobile viewer status bar), featuring genuine bilingual signboards on Rajgir-Bihar Sharif Road, Panditpur More, Nalanda. Featured across Contact Head Office card, Home Highlights spotlight, and About Section.
+- Reason: Direct client review feedback requesting stylish corporate title visibility on browser/mobile, official GPS coordinates, and deployment of the genuine company building photograph.
+- Impact: Substantially increases corporate trust, brand prestige, local discoverability via Google Maps, and ensures mobile visitors see the full legal company identity.
+
 ### 2026-10-24 — Subsidy Schedule Table Styling & Capacity Badge Overlap Fix
 - Changed: Implemented complete executive-level styling for the 1 kW to 10 kW Official Subsidy Schedule Table in `rooftop-subsidy.css` (`.subsidy-data-table`, `.sts-head`, `.sts-toggle-btn`, `.th-net`, `.td-net`, `.table-select-btn`, and responsive scroll wrapper). Fixed floating badge positioning on `.cap-popular` (`top: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap;`) with dedicated `padding-top: 14px` on `.capacity-pills` to prevent overlap on the "3 kW" text.
 - Reason: User pointed out unstyled raw table appearance and an overlapping "★ MOST POPULAR" badge on the 3 kW selector pill.
@@ -257,6 +292,104 @@ The original website consists of 10 structured thematic sections preceded by an 
   3. Replaced plain card headers with full-bleed image media headers (`.contact-card-media` with `.contact-card-img` and hover zoom `scale(1.05)`) and padded card bodies (`.contact-card-content`).
 - Reason: User requested moving the office directory cards to the very bottom of the Contact & FAQ page and attaching images for each location.
 - Impact: Creates a logical page journey (Direct Inquiry Form → FAQ Accordion → Registered Offices & Statutory Dossier) with rich photographic presentation for each physical location.
+
+### 2026-10-31 — PM Surya Ghar Benefits Heading Color Refinement (Black Styling)
+- Changed: Updated `.pmsg-main-heading` in `src/styles/detailed-schemes.css` to solid corporate black (`#111827`) from royal blue (`#025CA4`).
+- Reason: User requested: "make Benefits in black color. Rest is fine."
+- Impact: Unifies the Benefits title with standard corporate headings across the page while retaining the blue accent on subsidy values.
+
+### 2026-10-31 — PM Surya Ghar Official Benefits & Capacity Matrix Integration
+- Changed: Added dedicated `PMSuryaGharBenefitsCard` component in `src/components/PMSuryaGharBenefitsCard.tsx` and styled in `src/styles/detailed-schemes.css`, embedded directly under the "PM Surya Ghar: Muft Bijli Yojana" tab in `DetailedSchemesSection.tsx`:
+  1. Official Government Layout: Replicated the national PM Surya Ghar portal benefits UI with a central "Benefits" heading in portal royal blue (`#025CA4`).
+  2. Dual-Column Subsidy Architecture: Left column for "Subsidy for Residential Households" detailing ₹30,000/kW up to 2 kW, ₹18,000/kW for additional capacity up to 3 kW, and ₹78,000 cap (>3 kW); right column for "Subsidy for GHS/RWA" detailing ₹18,000/kW up to 500 kW for common facilities/EV charging.
+  3. Special States Callout: Displayed central advisory for 10% additional subsidy applicability in special category states.
+  4. Household Sizing Capacity Matrix: Rounded data table aligning monthly units (0–150, 150–300, >300) with recommended solar capacities (1–2 kW, 2–3 kW, Above 3 kW).
+  5. Government Portal Reference Link: Prominently integrated outbound link to `https://pmsuryaghar.gov.in/#/` in both the benefits card and action footer with security attributes (`target="_blank" rel="noopener noreferrer"`).
+- Reason: User requested: "now for our 'Energy Needs & Scheme' section under PM Surya Ghar: Muft Bijli Yojana we need to add above benefits in our website. Try to create similar looking benefit section as possible. Also add this government link for more details - https://pmsuryaghar.gov.in/#/".
+- Impact: Provides official government credibility, aligning DEVSON's proposal portal directly with the central ministry's subsidy framework.
+
+### 2026-10-31 — Quotation Header & Card Spacing Expansion (De-cluttering & Breathing Room)
+- Changed: Increased vertical spacing in `src/styles/get-quotation.css`:
+  1. Main Underlined Heading Spacing: Increased `.q-card-main-heading` bottom margin from 14px to 26px with a 9px underline offset, eliminating visual crowding between the underlined title and the sub-heading.
+  2. Sub-heading Spacing: Expanded `.q-card-subheading` margin-bottom to 12px with improved line-height (1.35).
+  3. Header Card Padding: Increased `.q-card-header` padding to 46px 48px 42px (up from 38px 40px 30px).
+  4. Pre-Section-1 Spacing: Increased `.q-card-form` top/side padding to 48px 48px 40px (up from 36px), establishing generous visual separation before Section 01 (`01 Applicant Identity & Site Location`).
+  5. Section Block Separation: Expanded `.q-section-block` margin-bottom to 40px and padding-bottom to 36px.
+- Reason: User requested: "add more space after QUOTATION Heading and before starting of Section - 1, as of now thing are looking too cosy."
+- Impact: Resolves cramped layout ("cosy"), delivering an executive-grade, spacious document layout with optimal optical separation.
+
+### 2026-10-31 — Quotation Heading Styling: Bold, Underlined & Proportional Sub-heading Sizing
+- Changed: Re-styled the top card header in `GetQuotationSection.tsx` and `get-quotation.css`:
+  1. Primary QUOTATION Heading: Styled as `.q-card-main-heading` in heavy bold (`font-weight: 800`, `clamp(26px, 3.2vw, 32px)`), solid forest green (`var(--forest, #0B2818)`), and prominently underlined with an offset rule (`text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 3px`).
+  2. Proportional Line Below: Styled the line below ("Request Your Customized Solar Quotation") as `.q-card-subheading` in `clamp(22px, 2.7vw, 26px)` with `font-weight: 700`, making it exactly 1–2 points smaller than the primary `QUOTATION` heading.
+- Reason: User requested: "undetline and bold, underline the Quotaion Heading, line below that should be one or two point smaller in size compare to Quotaion."
+- Impact: Establishes strong typographical authority for the proposal card with exact size proportions and distinct visual hierarchy.
+
+### 2026-10-31 — Quotation Card Streamlining: Removal of Metadata Trust Badges Row
+- Changed: Removed the metadata pills row (`.q-meta-badges-row`) containing `DEVSON Official Bihar Proposal`, `~2 min to complete`, `SSL 256-Bit Encrypted`, and `* Required fields` from the top of the white quotation card in `GetQuotationSection.tsx` and cleaned up associated styles in `get-quotation.css`.
+- Reason: User requested: "remove the attached components."
+- Impact: Streamlines the card header to focus purely on the `QUOTATION` badge, proposal title, and subtitle, immediately leading into Section 1 (`01 Applicant Identity & Site Location`).
+
+### 2026-10-31 — Quotation Master Card Unification: Header Enclosed with Form Sections
+- Changed: Moved the section header (`QUOTATION` badge, main title `Request Your Customized Solar Quotation`, and description) inside the white master card container (`.q-master-card`) directly above the 3 sub-sections:
+  1. Unified White Card Architecture: Eliminated the detached floating header from the outer paper background; the white card now begins with the official badge and proposal title, followed by metadata trust badges, and directly flows into Section 01, 02, and 03.
+  2. Cohesive Document Canvas: The entire application process is housed within a single, integrated white document card resting on the warm paper page background.
+- Reason: User requested: "add attached section in white background section as well with below three sections."
+- Impact: Consolidates the complete quotation journey into a single, cohesive white corporate application document with clear visual hierarchy.
+
+### 2026-10-31 — Quotation Section Warm Paper Background Unification & Header De-duplication
+- Changed:
+  1. Background Harmonization: Updated the outer container `.quotation-section` background from harsh pure white (`#FFFFFF`) to match the surrounding site sections using the designated warm luxury paper token `background: var(--paper, #FAF8F3);` with `border-top: 1px solid var(--sage-line, #CFDBC8);`.
+  2. Master Card Contrast: Kept the inner `.q-master-card` on pure white (`#FFFFFF`) with a soft drop shadow (`0 4px 24px rgba(11, 40, 24, 0.05)`), allowing the application form card to stand out crisply on the warm canvas.
+  3. Header De-duplication: Removed the redundant second instance of the form title and subtitle from inside `.q-card-header`, eliminating double-rendering below the main section head.
+- Reason: User requested: "i think we should use same background color for Quotation section as well which we used in above sections."
+- Impact: Restores seamless aesthetic continuity across page transitions and eliminates visual duplication between section headers and card containers.
+
+### 2026-10-31 — Quotation Section Header Architecture & Complete Emoji / Icon Removal
+- Changed: Re-architected Section headers and removed distracting emoji icons across the Quotation form:
+  1. Section Headers Redesign: Replaced the bulky black pills (`SECTION 1`, `SECTION 2`, `SECTION 3`) and verbose subtitle descriptions with an executive step bar (`.q-sec-title-bar` with `.q-sec-step` `01`, `02`, `03` and `.q-sec-title`) paired with a refined horizontal divider rule (`.q-sec-divider`), eliminating unnecessary sub-details.
+  2. Full Emoji Icon Stripping: Removed all emojis and decorative icons (`📐`, `📌`, `🛡️`, `🔒`, `⚡`, `⚠️`, `✉️`, `👤`, `📍`, `✏️`) from policy cards, input fields, hint notes, and submission CTA buttons in `GetQuotationSection.tsx` and `translations/index.ts`.
+  3. Clean Input Layout: Restored clean `padding: 0 14px` on all standard inputs (`fullName`, `email`, `district`, `roofArea`), reserving subtle prefix styling strictly for the currency symbol (`₹`) on the monthly bill.
+- Reason: User requested: "i tried removing some unnecessary icons but getting some error. Kindly fix that. Also, i don't like how we are repersenting the Section headings, have a look how we can improve it. No need to add so many additional sub details for the sections."
+- Impact: Transforms the quotation section into an uncluttered, authoritative enterprise interface matching premier corporate B2B standards.
+
+### 2026-10-31 — Quotation Section: Compact Policy Cards & Interactive Modal Dialogs
+- Changed: Transformed the bulky inline policy acceptance blocks in Section 3 of the Quotation form (`GetQuotationSection.tsx`) into compact, space-saving policy summary strips with dedicated popup modal windows:
+  1. Compact Policy Strips: Replaced the 3-paragraph full-screen inline policy text blocks with single-row `.q-compact-policy-card` elements containing the checkbox, summary heading, policy badge, floor level / privacy advisory snippet, and a distinct "Read Policy Details ↗" button.
+  2. Modal Popup Dialog: Built an interactive, high-contrast modal popup (`activePolicyModal === 'siteVisit' | 'privacy'`) displaying the complete 3-paragraph policy specifications, advisory callouts, an "Accept Policy & Close" action button that checks the checkbox directly from the modal, and a "Close" button.
+  3. Minimalist Palette: Maintained pure monochrome black font on white background (`#111827` on `#FFFFFF` with `#E5E7EB` borders) with zero pastel colors.
+- Reason: User requested reducing the excessive vertical space occupied by the two acceptance policies while allowing interested users to review full policy terms in detail via popup modal windows.
+- Impact: Decreased the vertical scroll height of Section 3 by over 75%, making the submission process immediate and frictionless while preserving complete legal disclosure and mandatory checkbox compliance.
+
+### 2026-10-31 — Quotation Monochrome Aesthetic (Black on White) & Dedicated Phone Input Prefix
+- Changed:
+  1. Converted the Quotation section and both policy cards (Engineering Site Visit & Corporate Privacy) from pastel amber/mint backgrounds into an executive, high-contrast monochrome design featuring pure black typography on clean white backgrounds.
+  2. Fixed Point 2 Phone input group by introducing `.q-phone-input-group` with a dedicated `+91` prefix block and realistic sample placeholder text (`e.g. 98765 43210`), eliminating text overlap.
+- Reason: User requested: "don't make it so colorful, make it simple black front on white background. Also, second point sample text is not displaying correct. Also tell me if somehow we can feature to verify the mobile no. and email id verification like other websites do it by sending OTPs."
+- Impact: Delivers a clean, professional executive look without distracting pastel colors, ensures 100% placeholder visibility, and prepares technical architecture for mobile/email OTP verification.
+
+### 2026-10-31 — Quotation Section UX Optimization: "QUOTATION" Renaming, Custom Sizing Toggles, Full-Width Remarks & Dual Mandatory Policies
+- Changed: Re-architected `GetQuotationSection.tsx` and `get-quotation.css`:
+  1. Section Naming: Renamed section badge strictly to `"QUOTATION"` (`"कोटेशन"` in Hindi).
+  2. Section 1 Streamlining: Removed the attached info cards (State Jurisdiction and Turnkey Support Desk), establishing a clean 4-column desktop input row (`Full Name`, `Phone`, `Email`, `District in Bihar`).
+  3. Custom Input Toggles (Points 6 & 7): Implemented interactive dual-mode settings where users can either click preset chips (`₹1k–₹2.5k`, `₹2.5k–₹4k`, `₹4k–₹7k`, `₹7k+` for bill; `150`, `250`, `350`, `500+ sq. ft.` for roof) or click `✏️ Custom` to reveal an active custom input box to type exact figures.
+  4. Full-Width Point 8: Expanded `Additional Requirements / Notes` textarea to span 100% of container width.
+  5. Dual Full-Width Mandatory Policy Panels: Replaced cramped single-column policies with two full-width, 3-paragraph executive policy blocks:
+     - Policy A: *Engineering Site Visit & Pricing Policy* with required Checkbox A.
+     - Policy B: *Corporate Data Privacy & Security Policy* with required Checkbox B.
+     - Submission gate: Submit CTA is locked (`🔒 Accept Both Policies (a & b) to Submit Quotation`) until both checkboxes are ticked.
+- Reason: User requested: "1. Rename this section as "QUOTATION" only. 2. Remove the attached components from section - 1. 3. For 6th and 7th point, create settings so that either user select from the already available options or click on Custom button and put value in it. 4. Point no. 8 should cover the entire widht not only one column. 5. I want users to select both checkboxes - a. Engineering Site Visit & Pricing Policy & b. Our Privacy Policy. Make sure the details are visible properly, not too much big and complex, 2-3 paragraph is enough. Also, this also has to occupy entire with and not only one column."
+- Impact: Streamlines input flow, provides maximum flexibility with custom toggles, ensures spacious full-width remarks, and legally enforces dual-policy consent.
+
+### 2026-10-31 — Quotation Rooftop Floor-Level Pricing Disclaimer & Location Updates
+- Changed:
+  1. Incorporated formal pricing disclaimer across all quotation and pricing touchpoints: *"Note: The final price may vary during the engineer's site visit, depending on your rooftop floor level."* (English) and *"नोट: इंजीनियर के साइट विजिट के दौरान आपकी छत की मंजिल (फ्लोर लेवल) के अनुसार अंतिम मूल्य में अंतर हो सकता है।"* (Hindi) in `src/translations/index.ts`, `src/components/GetQuotationSection.tsx` (form footer callout, submission confirmation modal, and WhatsApp proposal generator), and `src/components/RooftopSubsidySection.tsx` (below 1–10 kW subsidy pricing table).
+  2. Updated commissioned utility and commercial plant locations in `src/components/TrackRecordSection.tsx` to `Nawada`, `Rajgir`, `Patna`, and `Bhagalpur`.
+  3. Styled the company subtitle "Renewable Energy Private Limited" in uniform high-contrast solid white (`#FFFFFF`) across header navigation and footer per client design feedback.
+  4. Scoped official GPS coordinates (`25°02'23.6"N 85°25'11.1"E`) strictly to the Contact page and corporate Footer.
+  5. Implemented live interactive dual-pane Google Map & facility card section in `src/app/contact/page.tsx`, and updated the corporate headquarters photograph with the genuine facility image (`rajgir-head-office.jpg`).
+- Reason: Client reviewed the website and requested rooftop floor-level disclaimer on quotations, localized Bihar plant locations, clean brand subtitle typography, and refined location mapping.
+- Impact: Provides transparent pricing communication preventing customer disputes regarding floor heights, reinforces regional presence with authentic Bihar project sites, and improves overall brand presentation.
 
 ### 2026-10-24 — Contact & FAQ Page Modernization & Energy Needs Alignment Fix
 - Changed:

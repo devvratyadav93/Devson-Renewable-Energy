@@ -1,530 +1,992 @@
 /* ==========================================================================
-   MICROSOFT FORMS ENTERPRISE QUOTATION SHELL & FIELDS
+   DEVSON SOLAR QUOTATION STUDIO — MONOCHROME BLACK ON WHITE MASTER STYLESHEET
    ========================================================================== */
 
 .quotation-section {
-  padding: 80px 0;
-  background: #F4F6F4;
-  border-top: 1px solid var(--sage-line);
+  padding: 72px 0 96px;
+  background: var(--paper, #FAF8F3);
+  border-top: 1px solid var(--sage-line, #CFDBC8);
+  position: relative;
 }
 
-.ms-form-shell {
-  max-width: 960px;
+/* --------------------------------------------------------------------------
+   Master Card Container & Header
+   -------------------------------------------------------------------------- */
+.q-master-card {
+  max-width: 1300px;
   margin: 0 auto;
   background: #FFFFFF;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
-  border: 1px solid #E1DFDD;
+  border-radius: 16px;
+  border: 1.5px solid #E5E7EB;
+  box-shadow: 0 4px 24px rgba(11, 40, 24, 0.05);
   overflow: hidden;
 }
 
-.ms-form-accent-strip {
-  height: 8px;
+.q-card-top-stripe {
+  height: 4px;
   width: 100%;
-  background: linear-gradient(90deg, #0B2818 0%, #174E2E 45%, #E8A33D 100%);
+  background: #111827;
 }
 
-.ms-form-header {
-  padding: 36px 40px 28px;
-  border-bottom: 1px solid #EDEBE9;
+.q-card-header {
+  padding: 46px 48px 42px;
+  border-bottom: 1.5px solid #E5E7EB;
   background: #FFFFFF;
+  text-align: center;
 }
 
-.ms-form-meta-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-  align-items: center;
-}
-
-.ms-meta-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.76rem;
-  font-weight: 700;
-  color: #323130;
-  background: #F3F2F1;
-  padding: 4px 10px;
-  border-radius: 6px;
+.q-card-main-heading {
+  font-family: var(--font-display, inherit);
+  font-size: clamp(26px, 3.2vw, 32px);
+  font-weight: 800;
+  color: var(--forest, #0B2818);
+  text-transform: uppercase;
   letter-spacing: 0.02em;
-}
-
-.ms-meta-required {
-  margin-left: auto;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #A80000;
-}
-
-.ms-form-title {
-  font-family: var(--font-display);
-  font-size: 1.85rem;
-  font-weight: 700;
-  color: #201F1E;
-  margin-bottom: 8px;
+  text-decoration: underline;
+  text-underline-offset: 9px;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--forest, #0B2818);
+  margin: 0 auto 26px;
+  display: inline-block;
   line-height: 1.25;
 }
 
-.ms-form-desc {
+.q-card-subheading,
+.q-card-title {
+  font-family: var(--font-display, inherit);
+  font-size: clamp(22px, 2.7vw, 26px);
+  font-weight: 700;
+  color: #111827;
+  margin: 0 auto 12px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.q-card-subtitle {
   font-size: 0.96rem;
-  color: #605E5C;
-  line-height: 1.55;
-  margin: 0;
+  color: #4B5563;
+  line-height: 1.65;
+  max-width: 780px;
+  margin: 0 auto;
 }
 
-.ms-form-body {
-  padding: 32px 40px;
+/* --------------------------------------------------------------------------
+   Master Form & Section Blocks
+   -------------------------------------------------------------------------- */
+.q-card-form {
+  padding: 48px 48px 40px;
+  background: #FFFFFF;
 }
 
-.ms-section-header {
+.q-section-block {
+  margin-bottom: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1.5px solid #E5E7EB;
+}
+
+.q-section-block:last-of-type {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.q-section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.q-sec-title-bar {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: 32px 0 20px;
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid #EDEBE9;
+  flex-shrink: 0;
 }
 
-.ms-section-header:first-of-type {
-  margin-top: 0;
-}
-
-.ms-sec-pill {
-  background: #0B2818;
-  color: var(--amber);
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 3px 10px;
+.q-sec-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
   border-radius: 6px;
+  background: #111827;
+  color: #FFFFFF;
+  font-size: 0.74rem;
+  font-weight: 800;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.05em;
 }
 
-.ms-sec-title {
-  font-family: var(--font-display);
+.q-sec-title {
+  font-family: var(--font-display, inherit);
   font-size: 1.15rem;
   font-weight: 700;
-  color: #201F1E;
+  color: #111827;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
-.ms-question-grid {
+.q-sec-divider {
+  flex: 1;
+  height: 1.5px;
+  background: #E5E7EB;
+}
+
+/* --------------------------------------------------------------------------
+   Section 1: 4-Column Responsive Grid (Inputs only)
+   -------------------------------------------------------------------------- */
+.q-sec1-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
 }
 
-.ms-q-full {
-  grid-column: span 2;
+/* --------------------------------------------------------------------------
+   Section 2: 3-Column Responsive Grid
+   -------------------------------------------------------------------------- */
+.q-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
 }
 
-.ms-question-block {
+.q-align-stretch {
+  align-items: stretch;
+}
+
+.q-col-cell {
   display: flex;
   flex-direction: column;
-  background: #FAF9F8;
-  border: 1px solid #E1DFDD;
-  border-radius: 8px;
-  padding: 18px 20px;
+}
+
+.q-cell-elevated {
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  padding: 20px 18px;
   transition: all 0.2s ease;
 }
 
-.ms-question-block:focus-within {
-  background: #FFFFFF;
-  border-color: #0B2818;
-  box-shadow: 0 4px 14px rgba(11, 40, 24, 0.08);
+.q-cell-elevated:focus-within {
+  border-color: #111827;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.ms-q-label {
+/* --------------------------------------------------------------------------
+   Labels, Inputs, Selects & Textareas
+   -------------------------------------------------------------------------- */
+.q-label {
   display: flex;
   align-items: baseline;
   gap: 8px;
   font-size: 0.88rem;
   font-weight: 700;
-  color: #323130;
+  color: #111827;
   margin-bottom: 10px;
   line-height: 1.35;
 }
 
-.ms-q-num {
+.q-num {
+  font-size: 0.85rem;
   font-weight: 800;
-  color: #0B2818;
-  font-size: 0.95rem;
+  color: #111827;
 }
 
-.ms-input,
-.ms-select,
-.ms-textarea {
-  width: 100%;
-  padding: 10px 14px;
-  background: #FFFFFF;
-  border: 1px solid #D2D0CE;
-  border-bottom: 2px solid #8A8886;
-  border-radius: 4px;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: #201F1E;
-  transition: all 0.2s ease;
-  outline: none;
-  box-sizing: border-box;
+.q-optional-tag {
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: #6B7280;
 }
 
-.ms-input:focus,
-.ms-select:focus,
-.ms-textarea:focus {
-  border-color: #0B2818;
-  border-bottom: 2px solid #E8A33D;
-  box-shadow: 0 0 0 1px #0B2818;
-  background: #FFFFFF;
-}
-
-.ms-select-highlight {
-  border-left: 3px solid #E8A33D;
-  font-weight: 600;
-}
-
-/* MS Forms Choice Chips (Quick Segmented Selectors) */
-.ms-choice-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.ms-chip-btn {
-  background: #FFFFFF;
-  border: 1px solid #D2D0CE;
-  border-radius: 20px;
-  padding: 6px 14px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #323130;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: var(--font-body);
-}
-
-.ms-chip-btn:hover {
-  border-color: #0B2818;
-  background: #F3F2F1;
-  color: #0B2818;
-}
-
-.ms-chip-btn.active {
-  background: #0B2818;
-  color: var(--amber);
-  border-color: #0B2818;
-  font-weight: 700;
-  box-shadow: 0 2px 6px rgba(11, 40, 24, 0.2);
-}
-
-.ms-field-hint {
-  font-size: 0.78rem;
-  color: #605E5C;
-  margin-top: 6px;
-  line-height: 1.4;
-}
-
-.ms-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* MS Forms Submission Footer */
-.ms-form-footer {
-  padding: 24px 40px 32px;
-  background: #FAF9F8;
-  border-top: 1px solid #EDEBE9;
+.q-label-with-mode {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+}
+
+.q-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.q-affix-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.88rem;
+  color: #4B5563;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.q-affix-currency {
+  position: absolute;
+  left: 14px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #4B5563;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.q-input,
+.q-select {
+  height: 44px;
+  width: 100%;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 0 14px;
+  font-size: 0.92rem;
+  color: #111827;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.q-input.q-has-currency {
+  padding-left: 32px;
+}
+
+/* Dedicated Phone Input Group: Prefix separated from input field */
+.q-phone-input-group {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.q-phone-input-group:focus-within {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.q-phone-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: #F3F4F6;
+  color: #111827;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border-right: 1px solid #D1D5DB;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.q-phone-input {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 14px !important;
+  height: 44px;
+  width: 100%;
+  color: #111827;
+}
+
+.q-textarea {
+  width: 100%;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 0.92rem;
+  color: #111827;
+  background: #FFFFFF;
+  outline: none;
+  resize: vertical;
+  min-height: 90px;
+  transition: all 0.2s ease;
+}
+
+.q-textarea-full {
+  width: 100%;
+  min-height: 90px;
+}
+
+.q-input:focus,
+.q-select:focus,
+.q-textarea:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+.q-select-highlight {
+  font-weight: 600;
+  color: #111827;
+}
+
+.q-field-hint {
+  display: block;
+  font-size: 0.74rem;
+  color: #6B7280;
+  margin-top: 6px;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   Point 6 & 7: Preset Chips vs Custom Button & Input (Monochrome)
+   -------------------------------------------------------------------------- */
+.q-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.q-chip-btn {
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.q-chip-btn:hover {
+  border-color: #111827;
+  background: #F9FAFB;
+}
+
+.q-chip-btn.active {
+  background: #111827;
+  border-color: #111827;
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.q-custom-toggle-btn {
+  border-style: dashed;
+  color: #111827;
+  background: #F9FAFB;
+}
+
+.q-custom-toggle-btn:hover {
+  background: #F3F4F6;
+  border-color: #111827;
+}
+
+.q-custom-toggle-btn.active {
+  background: #111827;
+  border-style: solid;
+  border-color: #111827;
+  color: #FFFFFF;
+}
+
+.q-custom-active-input {
+  border-color: #111827 !important;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Section 3: Point 8 Full-Width Remarks Textarea
+   -------------------------------------------------------------------------- */
+.q-point8-fullwidth {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   Section 3: Compact Policies A & B (Simple Black Font on White Background)
+   -------------------------------------------------------------------------- */
+.q-compact-policy-card {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.q-compact-policy-card:hover {
+  border-color: #9CA3AF;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.q-compact-policy-card.is-accepted {
+  border-color: #111827;
+  background: #FAFAFA;
+}
+
+.q-compact-policy-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.q-compact-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.q-compact-check-label .q-checkbox-input {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.q-compact-policy-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.q-compact-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
-.ms-footer-notice {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-width: 540px;
+.q-compact-tag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.35;
 }
 
-.ms-notice-line {
-  font-size: 0.82rem;
-  color: #065F46;
-  font-weight: 600;
-  line-height: 1.45;
+.q-required-star {
+  color: #DC2626;
+  font-weight: 800;
 }
 
-.ms-security-line {
-  font-size: 0.76rem;
-  color: #605E5C;
+.q-compact-snippet {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #4B5563;
   line-height: 1.4;
 }
 
-.ms-submit-btn {
-  background: #0B2818;
-  color: #FFFFFF;
-  font-family: var(--font-body);
-  font-size: 0.98rem;
-  font-weight: 700;
-  padding: 14px 34px;
-  border-radius: 6px;
-  border: 1px solid var(--amber);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 14px rgba(11, 40, 24, 0.25);
+.q-btn-read-policy {
+  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #111827;
+  background: #F3F4F6;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  cursor: pointer;
   white-space: nowrap;
+  transition: all 0.15s ease;
 }
 
-.ms-submit-btn:hover {
-  background: #174E2E;
-  border-color: var(--amber);
+.q-btn-read-policy:hover {
+  background: #111827;
+  color: #FFFFFF;
+  border-color: #111827;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(11, 40, 24, 0.35);
 }
 
-.ms-submit-btn:disabled {
-  opacity: 0.75;
+@media (max-width: 640px) {
+  .q-compact-policy-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .q-btn-read-policy {
+    align-self: flex-start;
+    width: 100%;
+  }
+}
+
+.q-checkbox-input {
+  width: 20px;
+  height: 20px;
+  accent-color: #111827;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.q-policy-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.q-policy-p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #1F2937;
+}
+
+.q-policy-p strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   Policy Details Modal Dialog (Popup Window)
+   -------------------------------------------------------------------------- */
+.q-policy-modal-dialog {
+  background: #FFFFFF;
+  border-radius: 16px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+  border: 1.5px solid #E5E7EB;
+  overflow: hidden;
+  animation: qModalIn 0.25s ease-out;
+}
+
+.q-policy-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 24px 16px;
+  border-bottom: 1.5px solid #E5E7EB;
+  background: #FAFAFA;
+}
+
+.q-policy-modal-head-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.q-policy-modal-tag {
+  display: inline-block;
+  background: #E5E7EB;
+  color: #111827;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.q-policy-modal-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.q-policy-modal-close-icon {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: #6B7280;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: all 0.15s ease;
+}
+
+.q-policy-modal-close-icon:hover {
+  background: #E5E7EB;
+  color: #111827;
+}
+
+.q-policy-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.q-policy-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  border-top: 1.5px solid #E5E7EB;
+  background: #FAFAFA;
+}
+
+.q-btn-modal-accept {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  background: #111827;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.q-btn-modal-accept:hover {
+  background: #1F2937;
+  transform: translateY(-1px);
+}
+
+.q-btn-modal-dismiss {
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: #FFFFFF;
+  color: #374151;
+  border: 1px solid #D1D5DB;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.q-btn-modal-dismiss:hover {
+  background: #F3F4F6;
+  color: #111827;
+}
+
+/* --------------------------------------------------------------------------
+   Full-Width Submission Row
+   -------------------------------------------------------------------------- */
+.q-fullwidth-submit-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.q-master-submit-btn {
+  max-width: 520px;
+  width: 100%;
+  min-height: 52px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: var(--font-display, inherit);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #111827;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.q-master-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: #1F2937;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  color: #FFFFFF;
+}
+
+.q-master-submit-btn.btn-disabled,
+.q-master-submit-btn:disabled {
+  background: #F3F4F6;
+  color: #9CA3AF;
+  border: 1.5px solid #E5E7EB;
+  box-shadow: none;
   cursor: not-allowed;
   transform: none;
 }
 
-@media (max-width: 900px) {
-  .ms-form-header,
-  .ms-form-body,
-  .ms-form-footer {
-    padding: 24px 20px;
-  }
-
-  .ms-question-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ms-q-full {
-    grid-column: span 1;
-  }
-
-  .ms-meta-required {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .ms-form-footer {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .ms-submit-btn {
-    width: 100%;
-    justify-content: center;
-  }
+.q-both-policies-alert {
+  font-size: 0.8rem;
+  color: #111827;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  padding: 6px 18px;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-align: center;
 }
 
-.spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(232, 163, 61, 0.3);
-  border-top-color: var(--amber);
+.q-submit-security-note {
+  font-size: 0.78rem;
+  color: #4B5563;
+  text-align: center;
+}
+
+.q-btn-spinner-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.q-btn-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  animation: qSpin 0.7s linear infinite;
 }
 
-@keyframes spin {
+@keyframes qSpin {
   to { transform: rotate(360deg); }
 }
 
-/* Success Modal */
-.quotation-modal-overlay {
+/* --------------------------------------------------------------------------
+   Confirmation Modal (Monochrome)
+   -------------------------------------------------------------------------- */
+.q-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(6, 22, 13, 0.82);
-  backdrop-filter: blur(8px);
-  z-index: 2000;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  animation: fadeIn 0.25s ease;
 }
 
-.quotation-modal {
-  background: var(--white);
+.q-modal-dialog {
+  background: #FFFFFF;
   border-radius: 16px;
   max-width: 580px;
   width: 100%;
-  padding: 36px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-  border: 2px solid var(--amber);
-  animation: popIn 0.3s ease;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3);
+  border: 1.5px solid #E5E7EB;
+  overflow: hidden;
+  animation: qModalIn 0.25s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes qModalIn {
+  from { opacity: 0; transform: scale(0.95) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-@keyframes popIn {
-  from { transform: scale(0.95); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.modal-header {
+.q-modal-head {
   text-align: center;
-  margin-bottom: 22px;
+  padding: 28px 28px 18px;
+  background: #FFFFFF;
+  border-bottom: 1.5px solid #E5E7EB;
 }
 
-.modal-badge {
-  display: inline-block;
-  font-size: 0.72rem;
+.q-modal-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #111827;
+  color: #FFFFFF;
+  font-size: 1.6rem;
   font-weight: 800;
-  color: #065f46;
-  background: #d1fae5;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.08em;
-  margin-bottom: 10px;
-}
-
-.modal-title {
-  font-family: var(--font-display);
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--forest);
-  margin-bottom: 6px;
-}
-
-.modal-sub {
-  font-size: 0.88rem;
-  color: var(--muted);
-}
-
-.ref-box {
-  background: #FFFDF5;
-  border: 1px dashed var(--amber);
-  border-radius: 10px;
-  padding: 12px 18px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.ref-label {
-  font-size: 0.82rem;
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.ref-value {
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  color: var(--amber-deep);
-}
-
-.summary-list {
-  background: #FAFAFA;
-  border-radius: 10px;
-  padding: 14px 18px;
-  margin-bottom: 18px;
-}
-
-.summary-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 6px 0;
-  font-size: 0.88rem;
-  border-bottom: 1px solid #ECECEC;
-}
-
-.summary-item:last-child {
-  border-bottom: none;
-}
-
-.summary-item .s-label {
-  color: var(--muted);
-}
-
-.summary-item .s-val {
-  font-weight: 600;
-  color: var(--forest);
-}
-
-.summary-item .s-val.highlight {
-  color: var(--amber-deep);
-}
-
-.modal-notice {
-  font-size: 0.82rem;
-  color: #065f46;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
-  padding: 10px 14px;
-  border-radius: 8px;
-  line-height: 1.45;
-  margin-bottom: 24px;
-}
-
-.modal-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.btn-modal-whatsapp {
-  flex: 1;
-  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #25D366;
-  color: #FFFFFF;
+  margin: 0 auto 12px;
+}
+
+.q-modal-title {
+  font-family: var(--font-display, inherit);
+  font-size: 1.35rem;
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 12px 16px;
+  color: #111827;
+  margin: 0 0 4px;
+}
+
+.q-modal-sub {
+  font-size: 0.84rem;
+  color: #4B5563;
+  margin: 0 0 14px;
+}
+
+.q-modal-ref-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111827;
+  color: #FFFFFF;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+}
+
+.q-modal-ref-badge strong {
+  color: #FFFFFF;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.05em;
+}
+
+.q-modal-body {
+  padding: 20px 28px;
+  background: #FFFFFF;
+}
+
+.q-modal-summary-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 10px;
+}
+
+.q-modal-summary-grid {
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.q-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  gap: 10px;
+}
+
+.q-sr-label {
+  color: #4B5563;
+}
+
+.q-sr-val {
+  color: #111827;
+  font-weight: 600;
+  text-align: right;
+}
+
+.q-modal-floor-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #F9FAFB;
+  border: 1px solid #E5E7EB;
   border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  color: #111827;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.q-modal-email-notice {
+  font-size: 0.76rem;
+  color: #4B5563;
+  text-align: center;
+}
+
+.q-modal-actions {
+  display: flex;
+  gap: 10px;
+  padding: 16px 28px 24px;
+  background: #FAFAFA;
+  border-top: 1px solid #E5E7EB;
+}
+
+.q-modal-btn-whatsapp {
+  flex: 1.5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #111827;
+  color: #FFFFFF;
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
-.btn-modal-whatsapp:hover {
-  background: #20BA5A;
+.q-modal-btn-whatsapp:hover {
+  background: #1F2937;
+  color: #FFFFFF;
 }
 
-.btn-modal-close {
+.q-modal-btn-close {
   flex: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--sage);
-  color: var(--slate);
-  font-weight: 700;
-  font-size: 0.9rem;
-  padding: 12px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #D1D5DB;
+  color: #111827;
+  padding: 11px 16px;
   border-radius: 8px;
-  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.btn-modal-close:hover {
-  background: #D9E2D4;
+.q-modal-btn-close:hover {
+  background: #F3F4F6;
 }
 
-@media (max-width: 900px) {
-  .quotation-card {
-    padding: 24px 18px;
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .q-sec1-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  .quotation-form .form-grid {
+
+  .q-grid-3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .q-grid-3col .q-col-cell:last-child {
+    grid-column: span 2;
+  }
+
+  .q-card-form {
+    padding: 28px 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .q-sec1-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
-  .form-group-full {
+
+  .q-grid-3col {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .q-grid-3col .q-col-cell:last-child {
     grid-column: span 1;
   }
-  .modal-actions {
+
+  .q-card-form {
+    padding: 28px 20px 24px;
+  }
+
+  .q-card-header {
+    padding: 32px 20px 28px;
+  }
+
+  .q-meta-badges-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .q-meta-required {
+    margin-left: 0;
+  }
+
+  .q-modal-actions {
     flex-direction: column;
   }
 }

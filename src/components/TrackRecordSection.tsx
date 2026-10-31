@@ -88,44 +88,48 @@ const clients = [
 
 const projects = [
   {
-    id: 'jhiganpur',
+    id: 'nawada',
     img: '/assets/jhiganpur.png',
-    alt: 'Jhiganpur 2 MW Solar Project',
+    alt: 'Nawada 2 MW Solar Project',
     mw: '2 MW',
-    loc: 'Jhiganpur',
+    loc: 'Nawada',
+    locHi: 'नवादा',
     state: 'Commissioned & Grid-Tied',
     type: 'Ground-Mounted EPC',
     voltage: '33 kV Evacuation',
     modules: 'Tier-1 Mono PERC',
   },
   {
-    id: 'khurai',
+    id: 'rajgir',
     img: '/assets/khurai.png',
-    alt: 'Khurai 2 MW Solar Project',
+    alt: 'Rajgir 2 MW Solar Project',
     mw: '2 MW',
-    loc: 'Khurai',
+    loc: 'Rajgir',
+    locHi: 'राजगीर',
     state: 'Commissioned & Active',
     type: 'Utility Ground Mount',
     voltage: '33 kV Substation Link',
     modules: 'High-Yield Bi-Facial',
   },
   {
-    id: 'raisen',
+    id: 'patna',
     img: '/assets/raisen.png',
-    alt: 'Raisen 2 MW Solar Project',
+    alt: 'Patna 2 MW Solar Project',
     mw: '2 MW',
-    loc: 'Raisen',
+    loc: 'Patna',
+    locHi: 'पटना',
     state: 'Commissioned & Synchronized',
     type: 'Industrial Solar EPC',
     voltage: '11 kV Feeder Link',
     modules: 'Smart String Inverters',
   },
   {
-    id: 'guna',
+    id: 'bhagalpur',
     img: '/assets/guna.png',
-    alt: 'Guna 6 MW Solar Project',
+    alt: 'Bhagalpur 6 MW Solar Project',
     mw: '6 MW',
-    loc: 'Guna',
+    loc: 'Bhagalpur',
+    locHi: 'भागलपुर',
     state: 'Commissioned & Operating',
     type: 'Open Access Solar Park',
     voltage: '33 kV Evacuation Line',
@@ -255,7 +259,7 @@ export const TrackRecordSection: React.FC = () => {
                 </div>
                 <div className="proj-overlay">
                   <div className="pc-mw">{p.mw}</div>
-                  <div className="pc-loc">📍 {p.loc}</div>
+                  <div className="pc-loc">📍 {language === 'en' ? p.loc : p.locHi}</div>
                   <div className="pc-tag">{p.type}</div>
                   <div className="pc-action">
                     <span>{language === 'en' ? 'View Technical Specs →' : 'तकनीकी विवरण देखें →'}</span>
@@ -289,7 +293,7 @@ export const TrackRecordSection: React.FC = () => {
             <div className="modal-body">
               <div className="modal-mw-badge">{selectedProject.mw} Grid-Connected</div>
               <h3 className="modal-title">{selectedProject.alt}</h3>
-              <p className="modal-loc">📍 Location: {selectedProject.loc}</p>
+              <p className="modal-loc">📍 {language === 'en' ? `Location: ${selectedProject.loc}` : `स्थान: ${selectedProject.locHi}`}</p>
 
               <div className="modal-specs-grid">
                 <div className="modal-spec-item">

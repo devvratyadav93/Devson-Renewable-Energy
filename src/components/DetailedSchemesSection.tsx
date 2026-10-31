@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/context/LanguageContext';
+import { PMSuryaGharBenefitsCard } from './PMSuryaGharBenefitsCard';
 
 interface SchemeDetail {
   id: string;
@@ -383,6 +384,11 @@ export const DetailedSchemesSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Official PM Surya Ghar National Portal Benefits & Sizing Matrix */}
+          {current.id === 'pm-surya-ghar' && (
+            <PMSuryaGharBenefitsCard language={language} />
+          )}
+
           {/* Bottom Half: Verified Benefits & Eligibility Dual Columns */}
           <div className="dsc-specs-grid">
             {/* Left: Key Verified Benefits */}
@@ -441,6 +447,17 @@ export const DetailedSchemesSection: React.FC = () => {
             </div>
 
             <div className="dsc-actions-group">
+              {current.id === 'pm-surya-ghar' && (
+                <a
+                  href="https://pmsuryaghar.gov.in/#/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-dsc-gov-portal"
+                  title="Official National Portal for PM Surya Ghar"
+                >
+                  🏛️ {language === 'en' ? 'pmsuryaghar.gov.in ↗' : 'अधिकृत पोर्टल ↗'}
+                </a>
+              )}
               <Link href={current.ctaCalculateLink} className="btn-dsc-secondary">
                 {language === 'en' ? 'View 1–10 kW Subsidy Schedule →' : '1–10 kW सब्सिडी दरें देखें →'}
               </Link>

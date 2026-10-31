@@ -453,6 +453,28 @@
   box-shadow: 0 6px 18px rgba(232, 163, 61, 0.45);
 }
 
+.btn-dsc-gov-portal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #025CA4;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-dsc-gov-portal:hover {
+  background: #00437A;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(2, 92, 164, 0.25);
+}
+
 .btn-dsc-secondary {
   background: var(--white);
   color: var(--forest);
@@ -549,3 +571,307 @@
   font-weight: 800;
   color: #059669;
 }
+
+/* ==========================================================================
+   OFFICIAL PM SURYA GHAR NATIONAL PORTAL BENEFITS CARD
+   Matches government portal typography, colors & structured table matrix
+   ========================================================================== */
+.pmsg-benefits-container {
+  background: #FFFFFF;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(2, 92, 164, 0.05);
+  padding: 36px 40px 32px;
+  margin: 28px 36px 32px;
+}
+
+.pmsg-main-heading {
+  text-align: center;
+  font-family: var(--font-display, inherit);
+  font-size: clamp(1.8rem, 2.7vw, 2.3rem);
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.01em;
+  margin: 0 auto 28px;
+}
+
+.pmsg-subsidy-split {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.pmsg-vertical-divider {
+  background: #E5E7EB;
+  width: 1px;
+  height: 100%;
+}
+
+.pmsg-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.pmsg-col-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.pmsg-header-line1 {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.pmsg-header-line2 {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #025CA4;
+  line-height: 1.3;
+}
+
+.pmsg-header-highlight {
+  color: #025CA4;
+  font-weight: 800;
+}
+
+.pmsg-header-sub {
+  display: block;
+  font-size: 0.82rem;
+  color: #6B7280;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.pmsg-sub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+
+.pmsg-tier-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+}
+
+.pmsg-tier-amount {
+  font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+  font-weight: 800;
+  color: #025CA4;
+  line-height: 1.2;
+  font-family: var(--font-display, inherit);
+}
+
+.pmsg-tier-unit {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1F2937;
+  margin-top: 2px;
+}
+
+.pmsg-tier-desc {
+  font-size: 0.82rem;
+  color: #4B5563;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.pmsg-tier-desc-long {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  max-width: 170px;
+}
+
+.pmsg-ghs-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+.pmsg-ghs-desc {
+  font-size: 0.82rem;
+  color: #4B5563;
+  line-height: 1.5;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.pmsg-special-states-note {
+  text-align: center;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1F2937;
+  margin: 28px auto 16px;
+}
+
+.pmsg-table-heading {
+  text-align: center;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 auto 16px;
+}
+
+.pmsg-table-wrap {
+  max-width: 820px;
+  margin: 0 auto 28px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.pmsg-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.pmsg-table-th {
+  text-align: left;
+  padding: 12px 18px;
+  font-weight: 600;
+  color: #374151;
+  background: #F9FAFB;
+  border-right: 1.5px solid #E5E7EB;
+  border-bottom: 1.5px solid #E5E7EB;
+}
+
+.pmsg-table-td {
+  padding: 12px 16px;
+  color: #1F2937;
+  font-weight: 600;
+  border-right: 1.5px solid #E5E7EB;
+  border-bottom: 1.5px solid #E5E7EB;
+}
+
+.pmsg-table td:last-child {
+  border-right: none;
+}
+
+.pmsg-table tr:last-child th,
+.pmsg-table tr:last-child td {
+  border-bottom: none;
+}
+
+.pmsg-td-highlight {
+  color: #025CA4;
+  font-weight: 800;
+  font-size: 0.94rem;
+}
+
+.pmsg-gov-link-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: #F0F7FF;
+  border: 1.5px solid #BAE6FD;
+  border-radius: 12px;
+  padding: 14px 22px;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.pmsg-glb-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pmsg-glb-emblem {
+  font-size: 24px;
+}
+
+.pmsg-glb-title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #025CA4;
+  letter-spacing: 0.02em;
+}
+
+.pmsg-glb-sub {
+  font-size: 0.76rem;
+  color: #0369A1;
+}
+
+.pmsg-glb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #025CA4;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.pmsg-glb-btn:hover {
+  background: #00437A;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(2, 92, 164, 0.25);
+}
+
+.pmsg-glb-arrow {
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .pmsg-subsidy-split {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pmsg-vertical-divider {
+    width: 100%;
+    height: 1px;
+    margin: 4px 0;
+  }
+
+  .pmsg-benefits-container {
+    padding: 24px 20px;
+    margin: 20px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pmsg-sub-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .pmsg-gov-link-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .pmsg-table-wrap {
+    overflow-x: auto;
+  }
+
+  .pmsg-table th,
+  .pmsg-table td {
+    padding: 10px 10px;
+    font-size: 0.8rem;
+  }
+}
+

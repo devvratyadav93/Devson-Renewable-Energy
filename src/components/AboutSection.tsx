@@ -33,7 +33,7 @@ export const AboutSection: React.FC = () => {
     {
       num: '04',
       title: t.val4,
-      image: '/assets/values/accountability.jpg',
+      image: '/assets/offices/rajgir-head-office.jpg',
       descEn: 'Permanent Rajgir & Nawada offices with responsive local Bihar engineering.',
       descHi: 'राजगीर व नवादा में स्थायी कार्यालय और तत्पर स्थानीय इंजीनियरिंग सहायता।',
     },
@@ -106,7 +106,7 @@ export const AboutSection: React.FC = () => {
               <div className="summary-rows-container">
                 <div className="summary-row">
                   <span className="k">{t.row1Label}</span>
-                  <span className="v">DEVSON Renewable Energy Pvt. Ltd.</span>
+                  <span className="v highlight-company-name">DEVSON Renewable Energy Private Limited</span>
                 </div>
                 <div className="summary-row">
                   <span className="k">{t.row2Label}</span>

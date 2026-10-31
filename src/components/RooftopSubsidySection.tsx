@@ -409,6 +409,15 @@ export const RooftopSubsidySection: React.FC = () => {
               </table>
             </div>
           )}
+
+          <div className="subsidy-floor-note">
+            <span className="sfn-icon">📌</span>
+            <span>
+              {language === 'en'
+                ? "Note: The final price may vary during the engineer's site visit, depending on your rooftop floor level."
+                : 'नोट: इंजीनियर के साइट विजिट के दौरान आपकी छत की मंजिल (फ्लोर लेवल) के अनुसार अंतिम मूल्य में अंतर हो सकता है।'}
+            </span>
+          </div>
         </div>
       </div>
     </section>

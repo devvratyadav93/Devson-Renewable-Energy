@@ -22,10 +22,10 @@ export const Footer: React.FC = () => {
               style={{ width: '56px', height: '56px', objectFit: 'contain' }}
             />
             <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.2rem', color: 'var(--white)' }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.25rem', color: 'var(--white)', letterSpacing: '0.04em', lineHeight: 1.1 }}>
                 DEVSON
               </div>
-              <div style={{ fontSize: '0.72rem', color: 'var(--amber)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+              <div style={{ fontSize: '0.74rem', letterSpacing: '0.04em', fontWeight: 500, color: '#FFFFFF', marginTop: '3px' }}>
                 {t.brandSub}
               </div>
             </div>
@@ -65,7 +65,20 @@ export const Footer: React.FC = () => {
           <div className="closing-col-label">{t.officesTitle}</div>
           <p style={{ fontWeight: 600, color: 'var(--white)', marginBottom: '4px' }}>{t.corpOfficeLabel}</p>
           <p style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.85)' }}>{t.corpOfficeValue}</p>
-          <p style={{ fontWeight: 600, color: 'var(--white)', marginTop: '12px', marginBottom: '4px' }}>{t.regOfficeLabel}</p>
+          <div style={{ marginTop: '6px', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontSize: '0.9rem' }}>📍</span>
+            <span style={{ fontSize: '0.80rem', color: 'rgba(255,255,255,0.7)' }}>GPS:</span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=25.039889,85.41975"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--amber)', textDecoration: 'none', fontWeight: 700, fontSize: '0.82rem' }}
+              title="Open Devson Head Office in Google Maps"
+            >
+              25°02'23.6"N 85°25'11.1"E
+            </a>
+          </div>
+          <p style={{ fontWeight: 600, color: 'var(--white)', marginTop: '8px', marginBottom: '4px' }}>{t.regOfficeLabel}</p>
           <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.85)' }}>{t.regOfficeValue}</p>
         </div>
 

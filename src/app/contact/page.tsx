@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { FaqSection } from '@/components/FaqSection';
 import { useLanguage } from '@/context/LanguageContext';
+import { translations } from '@/translations';
 
 export default function ContactPage() {
   const { language } = useLanguage();
+  const tMap = translations[language].contactMap;
 
   const [formState, setFormState] = useState({
     name: '',
@@ -14,6 +16,15 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [copiedCoords, setCopiedCoords] = useState(false);
+
+  const handleCopyCoords = () => {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText('25°02\'23.6"N 85°25\'11.1"E');
+      setCopiedCoords(true);
+      setTimeout(() => setCopiedCoords(false), 2500);
+    }
+  };
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -265,7 +276,7 @@ export default function ContactPage() {
 
           <div className="contact-grid reveal">
             {/* Office 1: Head Office */}
-            <div className="contact-card">
+            <div className="contact-card highlight-office-card">
               <div className="contact-card-media">
                 <img
                   src="/assets/offices/rajgir-head-office.jpg"
@@ -278,6 +289,9 @@ export default function ContactPage() {
                 </span>
               </div>
               <div className="contact-card-content">
+                <div className="contact-company-sub">
+                  DEVSON Renewable Energy Private Limited
+                </div>
                 <h3>
                   {language === 'en' ? 'Rajgir, Nalanda (Bihar)' : 'राजगीर, नालंदा (बिहार)'}
                 </h3>
@@ -285,6 +299,14 @@ export default function ContactPage() {
                   Bihar Sharif Road, Panditpur More, Rajgir, Nalanda, Bihar — 803116<br />
                   <span className="landmark">{language === 'en' ? '(Opposite Hotel Stay Here)' : '(होटल स्टे हियर के सामने)'}</span>
                 </p>
+
+                {/* Exact GPS Coordinates Badge */}
+                <div className="contact-gps-pill">
+                  <span className="gps-live-dot"></span>
+                  <span className="gps-lbl">GPS:</span>
+                  <strong className="gps-val">25°02'23.6"N 85°25'11.1"E</strong>
+                </div>
+
                 <div className="contact-links">
                   <a href="tel:+919296950833" className="c-link">
                     📞 +91 92969 50833
@@ -293,12 +315,16 @@ export default function ContactPage() {
                     ✉ devson.energy@gmail.com
                   </a>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Panditpur+More+Rajgir+Nalanda+Bihar+803116"
+                    href="https://www.google.com/maps/search/?api=1&query=25.039889,85.41975"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="c-link"
+                    className="c-link c-maps-link"
+                    title="Open 25°02'23.6&quot;N 85°25'11.1&quot;E in Google Maps"
                   >
-                    📍 {language === 'en' ? 'Open in Google Maps' : 'गूगल मैप्स पर देखें'}
+                    📍 {language === 'en' ? 'Google Maps (25°02\'23.6"N 85°25\'11.1"E)' : 'गूगल मैप्स पर देखें (25°02\'23.6"N 85°25\'11.1"E)'}
+                  </a>
+                  <a href="#office-map" className="c-link c-nav-down-link">
+                    🗺️ {language === 'en' ? 'View Route Map Below ↓' : 'नीचे विस्तृत नक्शा देखें ↓'}
                   </a>
                 </div>
               </div>
@@ -383,6 +409,104 @@ export default function ContactPage() {
                     <span className="stat-lbl">PAN / TAN</span>
                     <span className="stat-val">AANCD0450H / PTND07707A</span>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Dedicated Interactive Head Office Map & Highway Route Section */}
+      <section className="contact-map-section" id="office-map">
+        <div className="wrap">
+          <div className="section-head text-center reveal">
+            <span className="eyebrow">{tMap.badge}</span>
+            <h2>{tMap.heading}</h2>
+            <p>{tMap.desc}</p>
+          </div>
+
+          <div className="map-showcase-container reveal">
+            {/* Left: Live Interactive Google Map Viewport */}
+            <div className="map-viewport-wrap">
+              <iframe
+                title="DEVSON Renewable Energy Head Office Location Map"
+                src="https://maps.google.com/maps?q=25.039889,85.419750&t=m&z=16&output=embed&iwloc=near"
+                className="map-iframe"
+                loading="lazy"
+                allowFullScreen
+              ></iframe>
+
+              {/* Floating Head Office Pin Badge on Map */}
+              <div className="map-floating-pin-badge">
+                <span className="pin-pulse-dot"></span>
+                <div className="mf-pin-text">
+                  <strong>DEVSON Renewable Energy Head Office</strong>
+                  <span>25°02&apos;23.6&quot;N 85°25&apos;11.1&quot;E • Panditpur More / Ganjpar</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Detailed Facility Coordinates & Action Card */}
+            <div className="map-info-sidebar">
+              <div className="map-meta-card">
+                <div className="mm-item">
+                  <span className="mm-icon">🏛️</span>
+                  <div>
+                    <span className="mm-lbl">{tMap.facilityLabel}</span>
+                    <strong className="mm-title">{tMap.facilityName}</strong>
+                  </div>
+                </div>
+
+                <div className="mm-item">
+                  <span className="mm-icon">📍</span>
+                  <div>
+                    <span className="mm-lbl">{tMap.addressLabel}</span>
+                    <span className="mm-text">{tMap.addressVal}</span>
+                    <span className="mm-landmark">{tMap.landmarkVal}</span>
+                  </div>
+                </div>
+
+                <div className="mm-item">
+                  <span className="mm-icon">🌐</span>
+                  <div>
+                    <span className="mm-lbl">{tMap.gpsLabel}</span>
+                    <div className="mm-gps-row">
+                      <code className="mm-coords">25°02&apos;23.6&quot;N 85°25&apos;11.1&quot;E</code>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Instant Actions Grid */}
+                <div className="map-action-buttons">
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=25.039889,85.41975"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-map-action btn-directions"
+                  >
+                    {tMap.directionsBtn}
+                  </a>
+
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=25.039889,85.41975"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-map-action btn-gmaps"
+                  >
+                    {tMap.openGmapsBtn}
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyCoords}
+                    className="btn-map-action btn-copy"
+                  >
+                    {copiedCoords ? tMap.copiedText : tMap.copyCoordsBtn}
+                  </button>
+
+                  <a href="tel:+919296950833" className="btn-map-action btn-call">
+                    {tMap.callBtn}
+                  </a>
                 </div>
               </div>
             </div>

@@ -28,7 +28,9 @@ export const Hero: React.FC = () => {
         <div className="hero-meta">
           <div>
             <div className="hm-label">{t.preparedForLabel}</div>
-            <div className="hm-value">{t.preparedForValue}</div>
+            <div className="hm-value" style={{ color: 'var(--amber)', fontWeight: 700 }}>
+              {t.preparedForValue}
+            </div>
           </div>
           <div>
             <div className="hm-label">{t.locationLabel}</div>
