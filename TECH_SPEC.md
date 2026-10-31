@@ -297,6 +297,12 @@ python -m http.server 3000
 ---
 
 ## 8. Changelog
+### 2026-10-31 — PM Surya Ghar Benefits Heading Typography Alignment
+- Modified: `src/styles/detailed-schemes.css` (`.pmsg-main-heading`).
+- Before: `.pmsg-main-heading` used `clamp(1.8rem, 2.7vw, 2.3rem)` with fallback font styling.
+- After: `.pmsg-main-heading` explicitly set to `font-family: var(--font-display) !important;` (Space Grotesk), `color: #0B2818 !important;` (`var(--forest)`), and `font-size: clamp(2rem, 3.2vw, 2.75rem);` with `font-weight: 800` matching `.section-title` in `energy-needs.css`.
+- Reason: User requested: "can you do one thing, the benefits section we have created, the heading is looking very odd. Make it limilar to attached another heading." (providing image reference of "Know Your Solar Energy Needs").
+
 ### 2026-10-31 — PM Surya Ghar Benefits Heading Color Refinement
 - Modified: `src/styles/detailed-schemes.css` (`.pmsg-main-heading`).
 - Before: `.pmsg-main-heading` had `color: #025CA4` (royal blue).

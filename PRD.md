@@ -293,6 +293,14 @@ The original website consists of 10 structured thematic sections preceded by an 
 - Reason: User requested moving the office directory cards to the very bottom of the Contact & FAQ page and attaching images for each location.
 - Impact: Creates a logical page journey (Direct Inquiry Form → FAQ Accordion → Registered Offices & Statutory Dossier) with rich photographic presentation for each physical location.
 
+### 2026-10-31 — PM Surya Ghar Benefits Heading Typography Unification (Space Grotesk & Forest Green)
+- Changed: Updated `.pmsg-main-heading` in `src/styles/detailed-schemes.css` to match the exact typography of the section heading ("Know Your Solar Energy Needs"):
+  1. Font Family: Explicitly applied `font-family: var(--font-display) !important;` (Space Grotesk).
+  2. Color: Applied DEVSON's signature deep forest `#0B2818 !important;` (`var(--forest)`).
+  3. Proportions: Upgraded to `font-size: clamp(2rem, 3.2vw, 2.75rem);`, `font-weight: 800;`, `line-height: 1.2;`, and `letter-spacing: -0.01em;`.
+- Reason: User requested: "can you do one thing, the benefits section we have created, the heading is looking very odd. Make it limilar to attached another heading." (providing image reference of "Know Your Solar Energy Needs").
+- Impact: Harmonizes the Benefits heading with the site's brand display typography and visual scale.
+
 ### 2026-10-31 — PM Surya Ghar Benefits Heading Color Refinement (Black Styling)
 - Changed: Updated `.pmsg-main-heading` in `src/styles/detailed-schemes.css` to solid corporate black (`#111827`) from royal blue (`#025CA4`).
 - Reason: User requested: "make Benefits in black color. Rest is fine."
