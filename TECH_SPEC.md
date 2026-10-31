@@ -297,6 +297,12 @@ python -m http.server 3000
 ---
 
 ## 8. Changelog
+### 2026-10-31 — Official DEVSON Solar Schedule Flyer Replacement
+- Modified: `public/assets/devson-flyer.png`, `public/assets/devson-flyer.jpeg`, `assets/devson-flyer.png`, `assets/devson-flyer.jpeg`, `src/components/TemplateDownloadCard.tsx`.
+- Before: Downloadable flyer asset was the legacy image (`Devson Updated Template.png`, 2.3 MB) containing Hindi table headers, 8 kW daily production error (`26 Units`), and duplicated 10 kW row.
+- After: Replaced with client's new official template (`New Devson Template.jpeg`, 707 KB) featuring 3D AI visual assets, bilingual banners, English "CAPACITY WISE DETAILS" table, corrected 8 kW generation (32 Units), clean 10-tier structure, and updated disclaimers.
+- Verification: Performed 70-point numerical reconciliation between the new template and `RooftopSubsidySection.tsx`. Identified 69/70 exact matches and one ₹200 discrepancy at 3 kW (template states ₹1,12,200 vs mathematical ₹1,12,000).
+
 ### 2026-10-31 — PM Surya Ghar Benefits Heading Typography Alignment
 - Modified: `src/styles/detailed-schemes.css` (`.pmsg-main-heading`).
 - Before: `.pmsg-main-heading` used `clamp(1.8rem, 2.7vw, 2.3rem)` with fallback font styling.

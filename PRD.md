@@ -293,6 +293,14 @@ The original website consists of 10 structured thematic sections preceded by an 
 - Reason: User requested moving the office directory cards to the very bottom of the Contact & FAQ page and attaching images for each location.
 - Impact: Creates a logical page journey (Direct Inquiry Form → FAQ Accordion → Registered Offices & Statutory Dossier) with rich photographic presentation for each physical location.
 
+### 2026-10-31 — Official DEVSON Solar Schedule Flyer Replacement & Cross-Site Verification
+- Changed:
+  1. Replaced the flyer asset in `public/assets/devson-flyer.png`, `public/assets/devson-flyer.jpeg`, `assets/devson-flyer.png`, and `assets/devson-flyer.jpeg` with the newly provided high-definition template (`Supporting Documents/New Devson Template.jpeg`).
+  2. Updated [`TemplateDownloadCard.tsx`](file:///e:/My%20Projects/Devson/src/components/TemplateDownloadCard.tsx) download action and preview card metadata to reflect the new template.
+  3. Conducted automated and manual line-by-line reconciliation of all 10 capacity tiers (1 kW–10 kW, 70 data points) against the live website calculators.
+- Reason: User requested: "Kindly replace the old template with this new template, i have uploaded it in this path - E:\My Projects\Devson\Supporting Documents\New Devson Template.jpeg. Also at the end just verify and let me know if there is any value difference in New Template and the values we are displaying on our website."
+- Impact: Refreshes the downloadable flyer across the Home page and Footer with the client's latest brand creative and verified pricing data.
+
 ### 2026-10-31 — PM Surya Ghar Benefits Heading Typography Unification (Space Grotesk & Forest Green)
 - Changed: Updated `.pmsg-main-heading` in `src/styles/detailed-schemes.css` to match the exact typography of the section heading ("Know Your Solar Energy Needs"):
   1. Font Family: Explicitly applied `font-family: var(--font-display) !important;` (Space Grotesk).

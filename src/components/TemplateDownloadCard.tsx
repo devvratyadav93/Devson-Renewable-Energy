@@ -91,7 +91,7 @@ export const TemplateDownloadCard: React.FC = () => {
                 </a>
               </div>
               <span className="dossier-file-hint">
-                📄 {language === 'en' ? 'Direct PNG / PDF Document · 2.3 MB · Instant Access' : 'उच्च-गुणवत्ता दस्तावेज़ · 2.3 MB · सीधा डाउनलोड'}
+                📄 {language === 'en' ? 'Official High-Resolution Flyer Document · Instant Access' : 'उच्च-गुणवत्ता आधिकारिक दस्तावेज़ · सीधा डाउनलोड'}
               </span>
             </div>
 
