@@ -587,10 +587,11 @@
 
 .pmsg-main-heading {
   text-align: center;
-  font-family: var(--font-display, inherit);
-  font-size: clamp(1.8rem, 2.7vw, 2.3rem);
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
   font-weight: 800;
-  color: #111827;
+  color: #0B2818 !important;
+  line-height: 1.2;
   letter-spacing: -0.01em;
   margin: 0 auto 28px;
 }
